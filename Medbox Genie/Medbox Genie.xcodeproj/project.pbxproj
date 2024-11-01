@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B92AC76E2CCED4B4001B71DA /* Medbox_GenieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC76D2CCED4B4001B71DA /* Medbox_GenieApp.swift */; };
+		B92AC7702CCED4B4001B71DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC76F2CCED4B4001B71DA /* ContentView.swift */; };
+		B92AC7722CCED4B4001B71DA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7712CCED4B4001B71DA /* Item.swift */; };
+		B92AC7742CCED4B8001B71DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B92AC7732CCED4B8001B71DA /* Assets.xcassets */; };
+		B92AC7772CCED4B8001B71DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B92AC7762CCED4B8001B71DA /* Preview Assets.xcassets */; };
+		B92AC7812CCED4B8001B71DA /* Medbox_GenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7802CCED4B8001B71DA /* Medbox_GenieTests.swift */; };
+		B92AC78B2CCED4B8001B71DA /* Medbox_GenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC78A2CCED4B8001B71DA /* Medbox_GenieUITests.swift */; };
+		B92AC78D2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC78C2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift */; };
+		B92AC79A2CCFD10C001B71DA /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7992CCFD10C001B71DA /* LoginPageView.swift */; };
+		B92AC79C2CCFD955001B71DA /* LandingPage View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC79B2CCFD955001B71DA /* LandingPage View.swift */; };
+		B92AC79E2CCFE6D4001B71DA /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC79D2CCFE6D3001B71DA /* SignUpPage.swift */; };
+		B92AC7A32CD15415001B71DA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B92AC7A22CD15415001B71DA /* FirebaseAnalytics */; };
+		B92AC7A52CD15415001B71DA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B92AC7A42CD15415001B71DA /* FirebaseAuth */; };
+		B92AC7A72CD15415001B71DA /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B92AC7A62CD15415001B71DA /* FirebaseFirestoreCombine-Community */; };
+		B92AC7A92CD158F8001B71DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B92AC7A82CD158F8001B71DA /* GoogleService-Info.plist */; };
+		B92AC7AB2CD15A8E001B71DA /* Passwordview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B92AC77D2CCED4B8001B71DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B92AC7622CCED4B4001B71DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B92AC7692CCED4B4001B71DA;
+			remoteInfo = "Medbox Genie";
+		};
+		B92AC7872CCED4B8001B71DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B92AC7622CCED4B4001B71DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B92AC7692CCED4B4001B71DA;
+			remoteInfo = "Medbox Genie";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B92AC76A2CCED4B4001B71DA /* Medbox Genie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medbox Genie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B92AC76D2CCED4B4001B71DA /* Medbox_GenieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medbox_GenieApp.swift; sourceTree = "<group>"; };
+		B92AC76F2CCED4B4001B71DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B92AC7712CCED4B4001B71DA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		B92AC7732CCED4B8001B71DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B92AC7762CCED4B8001B71DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B92AC77C2CCED4B8001B71DA /* Medbox GenieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Medbox GenieTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B92AC7802CCED4B8001B71DA /* Medbox_GenieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medbox_GenieTests.swift; sourceTree = "<group>"; };
+		B92AC7862CCED4B8001B71DA /* Medbox GenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Medbox GenieUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B92AC78A2CCED4B8001B71DA /* Medbox_GenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medbox_GenieUITests.swift; sourceTree = "<group>"; };
+		B92AC78C2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medbox_GenieUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B92AC7992CCFD10C001B71DA /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
+		B92AC79B2CCFD955001B71DA /* LandingPage View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LandingPage View.swift"; sourceTree = "<group>"; };
+		B92AC79D2CCFE6D3001B71DA /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
+		B92AC7A82CD158F8001B71DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passwordview.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B92AC7672CCED4B4001B71DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B92AC7A72CD15415001B71DA /* FirebaseFirestoreCombine-Community in Frameworks */,
+				B92AC7A32CD15415001B71DA /* FirebaseAnalytics in Frameworks */,
+				B92AC7A52CD15415001B71DA /* FirebaseAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B92AC7792CCED4B8001B71DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B92AC7832CCED4B8001B71DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B92AC7612CCED4B4001B71DA = {
+			isa = PBXGroup;
+			children = (
+				B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */,
+				B92AC7A82CD158F8001B71DA /* GoogleService-Info.plist */,
+				B92AC79D2CCFE6D3001B71DA /* SignUpPage.swift */,
+				B92AC79B2CCFD955001B71DA /* LandingPage View.swift */,
+				B92AC76C2CCED4B4001B71DA /* Medbox Genie */,
+				B92AC77F2CCED4B8001B71DA /* Medbox GenieTests */,
+				B92AC7892CCED4B8001B71DA /* Medbox GenieUITests */,
+				B92AC76B2CCED4B4001B71DA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B92AC76B2CCED4B4001B71DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B92AC76A2CCED4B4001B71DA /* Medbox Genie.app */,
+				B92AC77C2CCED4B8001B71DA /* Medbox GenieTests.xctest */,
+				B92AC7862CCED4B8001B71DA /* Medbox GenieUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B92AC76C2CCED4B4001B71DA /* Medbox Genie */ = {
+			isa = PBXGroup;
+			children = (
+				B92AC76D2CCED4B4001B71DA /* Medbox_GenieApp.swift */,
+				B92AC76F2CCED4B4001B71DA /* ContentView.swift */,
+				B92AC7712CCED4B4001B71DA /* Item.swift */,
+				B92AC7732CCED4B8001B71DA /* Assets.xcassets */,
+				B92AC7752CCED4B8001B71DA /* Preview Content */,
+				B92AC7992CCFD10C001B71DA /* LoginPageView.swift */,
+			);
+			path = "Medbox Genie";
+			sourceTree = "<group>";
+		};
+		B92AC7752CCED4B8001B71DA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B92AC7762CCED4B8001B71DA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B92AC77F2CCED4B8001B71DA /* Medbox GenieTests */ = {
+			isa = PBXGroup;
+			children = (
+				B92AC7802CCED4B8001B71DA /* Medbox_GenieTests.swift */,
+			);
+			path = "Medbox GenieTests";
+			sourceTree = "<group>";
+		};
+		B92AC7892CCED4B8001B71DA /* Medbox GenieUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B92AC78A2CCED4B8001B71DA /* Medbox_GenieUITests.swift */,
+				B92AC78C2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift */,
+			);
+			path = "Medbox GenieUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B92AC7692CCED4B4001B71DA /* Medbox Genie */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B92AC7902CCED4B8001B71DA /* Build configuration list for PBXNativeTarget "Medbox Genie" */;
+			buildPhases = (
+				B92AC7662CCED4B4001B71DA /* Sources */,
+				B92AC7672CCED4B4001B71DA /* Frameworks */,
+				B92AC7682CCED4B4001B71DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Medbox Genie";
+			packageProductDependencies = (
+				B92AC7A22CD15415001B71DA /* FirebaseAnalytics */,
+				B92AC7A42CD15415001B71DA /* FirebaseAuth */,
+				B92AC7A62CD15415001B71DA /* FirebaseFirestoreCombine-Community */,
+			);
+			productName = "Medbox Genie";
+			productReference = B92AC76A2CCED4B4001B71DA /* Medbox Genie.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B92AC77B2CCED4B8001B71DA /* Medbox GenieTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B92AC7932CCED4B8001B71DA /* Build configuration list for PBXNativeTarget "Medbox GenieTests" */;
+			buildPhases = (
+				B92AC7782CCED4B8001B71DA /* Sources */,
+				B92AC7792CCED4B8001B71DA /* Frameworks */,
+				B92AC77A2CCED4B8001B71DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B92AC77E2CCED4B8001B71DA /* PBXTargetDependency */,
+			);
+			name = "Medbox GenieTests";
+			productName = "Medbox GenieTests";
+			productReference = B92AC77C2CCED4B8001B71DA /* Medbox GenieTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B92AC7852CCED4B8001B71DA /* Medbox GenieUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B92AC7962CCED4B8001B71DA /* Build configuration list for PBXNativeTarget "Medbox GenieUITests" */;
+			buildPhases = (
+				B92AC7822CCED4B8001B71DA /* Sources */,
+				B92AC7832CCED4B8001B71DA /* Frameworks */,
+				B92AC7842CCED4B8001B71DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B92AC7882CCED4B8001B71DA /* PBXTargetDependency */,
+			);
+			name = "Medbox GenieUITests";
+			productName = "Medbox GenieUITests";
+			productReference = B92AC7862CCED4B8001B71DA /* Medbox GenieUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B92AC7622CCED4B4001B71DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					B92AC7692CCED4B4001B71DA = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					B92AC77B2CCED4B8001B71DA = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = B92AC7692CCED4B4001B71DA;
+					};
+					B92AC7852CCED4B8001B71DA = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = B92AC7692CCED4B4001B71DA;
+					};
+				};
+			};
+			buildConfigurationList = B92AC7652CCED4B4001B71DA /* Build configuration list for PBXProject "Medbox Genie" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B92AC7612CCED4B4001B71DA;
+			packageReferences = (
+				B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = B92AC76B2CCED4B4001B71DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B92AC7692CCED4B4001B71DA /* Medbox Genie */,
+				B92AC77B2CCED4B8001B71DA /* Medbox GenieTests */,
+				B92AC7852CCED4B8001B71DA /* Medbox GenieUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B92AC7682CCED4B4001B71DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B92AC7772CCED4B8001B71DA /* Preview Assets.xcassets in Resources */,
+				B92AC7A92CD158F8001B71DA /* GoogleService-Info.plist in Resources */,
+				B92AC7742CCED4B8001B71DA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B92AC77A2CCED4B8001B71DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B92AC7842CCED4B8001B71DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B92AC7662CCED4B4001B71DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B92AC79E2CCFE6D4001B71DA /* SignUpPage.swift in Sources */,
+				B92AC7AB2CD15A8E001B71DA /* Passwordview.swift in Sources */,
+				B92AC7702CCED4B4001B71DA /* ContentView.swift in Sources */,
+				B92AC7722CCED4B4001B71DA /* Item.swift in Sources */,
+				B92AC76E2CCED4B4001B71DA /* Medbox_GenieApp.swift in Sources */,
+				B92AC79A2CCFD10C001B71DA /* LoginPageView.swift in Sources */,
+				B92AC79C2CCFD955001B71DA /* LandingPage View.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B92AC7782CCED4B8001B71DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B92AC7812CCED4B8001B71DA /* Medbox_GenieTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B92AC7822CCED4B8001B71DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B92AC78D2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift in Sources */,
+				B92AC78B2CCED4B8001B71DA /* Medbox_GenieUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B92AC77E2CCED4B8001B71DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B92AC7692CCED4B4001B71DA /* Medbox Genie */;
+			targetProxy = B92AC77D2CCED4B8001B71DA /* PBXContainerItemProxy */;
+		};
+		B92AC7882CCED4B8001B71DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B92AC7692CCED4B4001B71DA /* Medbox Genie */;
+			targetProxy = B92AC7872CCED4B8001B71DA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B92AC78E2CCED4B8001B71DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B92AC78F2CCED4B8001B71DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B92AC7912CCED4B8001B71DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Medbox Genie/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "bb3303-nyu.edu.Medbox-Genie";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B92AC7922CCED4B8001B71DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Medbox Genie/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "bb3303-nyu.edu.Medbox-Genie";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B92AC7942CCED4B8001B71DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "bb3303-nyu.edu.Medbox-GenieTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Medbox Genie.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Medbox Genie";
+			};
+			name = Debug;
+		};
+		B92AC7952CCED4B8001B71DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "bb3303-nyu.edu.Medbox-GenieTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Medbox Genie.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Medbox Genie";
+			};
+			name = Release;
+		};
+		B92AC7972CCED4B8001B71DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "bb3303-nyu.edu.Medbox-GenieUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Medbox Genie";
+			};
+			name = Debug;
+		};
+		B92AC7982CCED4B8001B71DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "bb3303-nyu.edu.Medbox-GenieUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Medbox Genie";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B92AC7652CCED4B4001B71DA /* Build configuration list for PBXProject "Medbox Genie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B92AC78E2CCED4B8001B71DA /* Debug */,
+				B92AC78F2CCED4B8001B71DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B92AC7902CCED4B8001B71DA /* Build configuration list for PBXNativeTarget "Medbox Genie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B92AC7912CCED4B8001B71DA /* Debug */,
+				B92AC7922CCED4B8001B71DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B92AC7932CCED4B8001B71DA /* Build configuration list for PBXNativeTarget "Medbox GenieTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B92AC7942CCED4B8001B71DA /* Debug */,
+				B92AC7952CCED4B8001B71DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B92AC7962CCED4B8001B71DA /* Build configuration list for PBXNativeTarget "Medbox GenieUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B92AC7972CCED4B8001B71DA /* Debug */,
+				B92AC7982CCED4B8001B71DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B92AC7A22CD15415001B71DA /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		B92AC7A42CD15415001B71DA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B92AC7A62CD15415001B71DA /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B92AC7622CCED4B4001B71DA /* Project object */;
+}
