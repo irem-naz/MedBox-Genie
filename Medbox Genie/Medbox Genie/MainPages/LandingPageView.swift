@@ -3,6 +3,7 @@ import SwiftUI
 struct LandingPageView: View {
     @State private var showLogin = false
     @State private var showSignUp = false
+    @Binding var isLoggedIn: Bool
 
     var body: some View {
         ZStack {
@@ -39,7 +40,7 @@ struct LandingPageView: View {
                         .cornerRadius(10)
                 }
                 .fullScreenCover(isPresented: $showLogin) {
-                    LoginPageView(isLoggedIn: .constant(false)) // Replace with actual binding if needed
+                    LoginPageView(isLoggedIn: $isLoggedIn) // Replace with actual binding if needed
                 }
 
                 // Sign Up Button
@@ -68,6 +69,6 @@ struct LandingPageView: View {
 
 struct LandingPageView_Previews: PreviewProvider {
     static var previews: some View {
-        LandingPageView()
+        LandingPageView(isLoggedIn: .constant(false))
     }
 }

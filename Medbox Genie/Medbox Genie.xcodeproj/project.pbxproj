@@ -7,16 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAB342522CD93DD500190DA3 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342512CD93DD500190DA3 /* MainPageView.swift */; };
+		AAB342542CD9478300190DA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342532CD9478300190DA3 /* ProfileView.swift */; };
+		AAB342562CD9575900190DA3 /* NotificationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342552CD9575900190DA3 /* NotificationMenuView.swift */; };
+		AAB342582CD958E200190DA3 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342572CD958E200190DA3 /* Medication.swift */; };
+		AAB3425A2CD95B7F00190DA3 /* AddMedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342592CD95B7F00190DA3 /* AddMedicationView.swift */; };
+		AAB3425C2CD974E300190DA3 /* ViewMedicationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3425B2CD974E200190DA3 /* ViewMedicationMethods.swift */; };
+		AAB342622CD978E100190DA3 /* LaunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342612CD978E100190DA3 /* LaunchApp.swift */; };
 		B92AC76E2CCED4B4001B71DA /* Medbox_GenieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC76D2CCED4B4001B71DA /* Medbox_GenieApp.swift */; };
-		B92AC7702CCED4B4001B71DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC76F2CCED4B4001B71DA /* ContentView.swift */; };
-		B92AC7722CCED4B4001B71DA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7712CCED4B4001B71DA /* Item.swift */; };
 		B92AC7742CCED4B8001B71DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B92AC7732CCED4B8001B71DA /* Assets.xcassets */; };
 		B92AC7772CCED4B8001B71DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B92AC7762CCED4B8001B71DA /* Preview Assets.xcassets */; };
 		B92AC7812CCED4B8001B71DA /* Medbox_GenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7802CCED4B8001B71DA /* Medbox_GenieTests.swift */; };
 		B92AC78B2CCED4B8001B71DA /* Medbox_GenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC78A2CCED4B8001B71DA /* Medbox_GenieUITests.swift */; };
 		B92AC78D2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC78C2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift */; };
 		B92AC79A2CCFD10C001B71DA /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7992CCFD10C001B71DA /* LoginPageView.swift */; };
-		B92AC79C2CCFD955001B71DA /* LandingPage View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC79B2CCFD955001B71DA /* LandingPage View.swift */; };
+		B92AC79C2CCFD955001B71DA /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC79B2CCFD955001B71DA /* LandingPageView.swift */; };
 		B92AC79E2CCFE6D4001B71DA /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC79D2CCFE6D3001B71DA /* SignUpPage.swift */; };
 		B92AC7A32CD15415001B71DA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B92AC7A22CD15415001B71DA /* FirebaseAnalytics */; };
 		B92AC7A52CD15415001B71DA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B92AC7A42CD15415001B71DA /* FirebaseAuth */; };
@@ -43,10 +48,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AAB342512CD93DD500190DA3 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
+		AAB342532CD9478300190DA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AAB342552CD9575900190DA3 /* NotificationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMenuView.swift; sourceTree = "<group>"; };
+		AAB342572CD958E200190DA3 /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
+		AAB342592CD95B7F00190DA3 /* AddMedicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationView.swift; sourceTree = "<group>"; };
+		AAB3425B2CD974E200190DA3 /* ViewMedicationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMedicationMethods.swift; sourceTree = "<group>"; };
+		AAB342612CD978E100190DA3 /* LaunchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchApp.swift; sourceTree = "<group>"; };
 		B92AC76A2CCED4B4001B71DA /* Medbox Genie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medbox Genie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92AC76D2CCED4B4001B71DA /* Medbox_GenieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medbox_GenieApp.swift; sourceTree = "<group>"; };
-		B92AC76F2CCED4B4001B71DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B92AC7712CCED4B4001B71DA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B92AC7732CCED4B8001B71DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B92AC7762CCED4B8001B71DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B92AC77C2CCED4B8001B71DA /* Medbox GenieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Medbox GenieTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +65,7 @@
 		B92AC78A2CCED4B8001B71DA /* Medbox_GenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medbox_GenieUITests.swift; sourceTree = "<group>"; };
 		B92AC78C2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medbox_GenieUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B92AC7992CCFD10C001B71DA /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
-		B92AC79B2CCFD955001B71DA /* LandingPage View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LandingPage View.swift"; sourceTree = "<group>"; };
+		B92AC79B2CCFD955001B71DA /* LandingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
 		B92AC79D2CCFE6D3001B71DA /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		B92AC7A82CD158F8001B71DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passwordview.swift; sourceTree = "<group>"; };
@@ -89,13 +99,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AAB3425E2CD9782500190DA3 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B92AC7992CCFD10C001B71DA /* LoginPageView.swift */,
+				B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */,
+				B92AC79D2CCFE6D3001B71DA /* SignUpPage.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		AAB3425F2CD9784300190DA3 /* MainPages */ = {
+			isa = PBXGroup;
+			children = (
+				B92AC79B2CCFD955001B71DA /* LandingPageView.swift */,
+				AAB342512CD93DD500190DA3 /* MainPageView.swift */,
+				AAB342532CD9478300190DA3 /* ProfileView.swift */,
+				AAB342552CD9575900190DA3 /* NotificationMenuView.swift */,
+			);
+			path = MainPages;
+			sourceTree = "<group>";
+		};
+		AAB342602CD9785B00190DA3 /* Medication */ = {
+			isa = PBXGroup;
+			children = (
+				AAB342572CD958E200190DA3 /* Medication.swift */,
+				AAB342592CD95B7F00190DA3 /* AddMedicationView.swift */,
+				AAB3425B2CD974E200190DA3 /* ViewMedicationMethods.swift */,
+			);
+			path = Medication;
+			sourceTree = "<group>";
+		};
 		B92AC7612CCED4B4001B71DA = {
 			isa = PBXGroup;
 			children = (
-				B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */,
-				B92AC7A82CD158F8001B71DA /* GoogleService-Info.plist */,
-				B92AC79D2CCFE6D3001B71DA /* SignUpPage.swift */,
-				B92AC79B2CCFD955001B71DA /* LandingPage View.swift */,
 				B92AC76C2CCED4B4001B71DA /* Medbox Genie */,
 				B92AC77F2CCED4B8001B71DA /* Medbox GenieTests */,
 				B92AC7892CCED4B8001B71DA /* Medbox GenieUITests */,
@@ -116,12 +153,14 @@
 		B92AC76C2CCED4B4001B71DA /* Medbox Genie */ = {
 			isa = PBXGroup;
 			children = (
+				AAB342602CD9785B00190DA3 /* Medication */,
+				AAB3425F2CD9784300190DA3 /* MainPages */,
+				AAB3425E2CD9782500190DA3 /* Authentication */,
 				B92AC76D2CCED4B4001B71DA /* Medbox_GenieApp.swift */,
-				B92AC76F2CCED4B4001B71DA /* ContentView.swift */,
-				B92AC7712CCED4B4001B71DA /* Item.swift */,
 				B92AC7732CCED4B8001B71DA /* Assets.xcassets */,
 				B92AC7752CCED4B8001B71DA /* Preview Content */,
-				B92AC7992CCFD10C001B71DA /* LoginPageView.swift */,
+				B92AC7A82CD158F8001B71DA /* GoogleService-Info.plist */,
+				AAB342612CD978E100190DA3 /* LaunchApp.swift */,
 			);
 			path = "Medbox Genie";
 			sourceTree = "<group>";
@@ -291,12 +330,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B92AC79E2CCFE6D4001B71DA /* SignUpPage.swift in Sources */,
+				AAB342542CD9478300190DA3 /* ProfileView.swift in Sources */,
 				B92AC7AB2CD15A8E001B71DA /* Passwordview.swift in Sources */,
-				B92AC7702CCED4B4001B71DA /* ContentView.swift in Sources */,
-				B92AC7722CCED4B4001B71DA /* Item.swift in Sources */,
+				AAB342522CD93DD500190DA3 /* MainPageView.swift in Sources */,
+				AAB342582CD958E200190DA3 /* Medication.swift in Sources */,
+				AAB342562CD9575900190DA3 /* NotificationMenuView.swift in Sources */,
+				AAB3425C2CD974E300190DA3 /* ViewMedicationMethods.swift in Sources */,
+				AAB342622CD978E100190DA3 /* LaunchApp.swift in Sources */,
 				B92AC76E2CCED4B4001B71DA /* Medbox_GenieApp.swift in Sources */,
 				B92AC79A2CCFD10C001B71DA /* LoginPageView.swift in Sources */,
-				B92AC79C2CCFD955001B71DA /* LandingPage View.swift in Sources */,
+				B92AC79C2CCFD955001B71DA /* LandingPageView.swift in Sources */,
+				AAB3425A2CD95B7F00190DA3 /* AddMedicationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -67,17 +67,17 @@ struct LoginPageView: View {
         .alert(isPresented: $showErrorMessage) {
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }
-        .alert(isPresented: $showSuccessMessage) {
-            Alert(title: Text("Success"), message: Text("Login successful!"), dismissButton: .default(Text("OK")) {
-                // Delay before setting isLoggedIn to true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    isLoggedIn = true // Show black screen after success alert
-                }
-            })
-        }
-        .fullScreenCover(isPresented: $isLoggedIn) {
-            SuccessView()
-        }
+//        .alert(isPresented: $showSuccessMessage) {
+//            Alert(title: Text("Success"), message: Text("Login successful!"), dismissButton: .default(Text("OK")) {
+//                // Delay before setting isLoggedIn to true
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                    isLoggedIn = true // Show black screen after success alert
+//                }
+//            })
+//        }
+//        .fullScreenCover(isPresented: $isLoggedIn) {
+//            SuccessView()
+//        }
     }
 
     private func validateAndLogin() {
@@ -92,7 +92,9 @@ struct LoginPageView: View {
                 errorMessage = "Try again" // Custom message for failed login
                 showErrorMessage = true
             } else {
-                showSuccessMessage = true  // Show success alert on successful login
+//                showSuccessMessage = true  // Show success alert on successful login
+                isLoggedIn = true  // Set to true on successful login
+                presentationMode.wrappedValue.dismiss() // Dismiss login view
             }
         }
     }
