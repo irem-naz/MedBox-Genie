@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "medicineName": "Aspirin",
+    "medicineDosage": "200mg",
+    "numberOfTablets": 30,
+    "prescribedDosage": "1 tablet daily",
+    "intakeFrequency": 1,
+    "startDate": "2024-11-14T00:00:00Z",
+    "endDate": "2024-12-14T00:00:00Z",
+    "expiryDate": "2025-11-14T00:00:00Z"
+  },
+  {
+    "id": "2",
+    "medicineName": "Paracetamol",
+    "medicineDosage": "500mg",
+    "numberOfTablets": 20,
+    "prescribedDosage": "1 tablet every 8 hours",
+    "intakeFrequency": 3,
+    "startDate": "2024-11-10T00:00:00Z",
+    "endDate": "2024-11-20T00:00:00Z",
+    "expiryDate": "2025-11-10T00:00:00Z"
+  }
+]
