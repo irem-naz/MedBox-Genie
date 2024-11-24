@@ -10,6 +10,7 @@ final class Medication {
     var startDate: Date
     var endDate: Date
     var expiryDate: Date              // Expiry date (only date portion stored)
+    var reminderDays: Set<String> // Example: ["Mon", "Wed", "Fri"]
 
     init(medicineName: String,
          medicineDosage: String,
@@ -18,7 +19,11 @@ final class Medication {
          intakeFrequency: Int,
          startDate: Date,
          endDate: Date,
-         expiryDate: Date) {
+         expiryDate: Date,
+         reminderDays: Set<String> = []) {
+        
+        
+        
         
         self.medicineName = medicineName
         self.medicineDosage = medicineDosage
@@ -28,6 +33,7 @@ final class Medication {
         self.startDate = startDate
         self.endDate = endDate
         self.expiryDate = Calendar.current.startOfDay(for: expiryDate) // Store only date
+        self.reminderDays = reminderDays
     }
     
     // Convert the medication object into a Firestore-compatible dictionary
@@ -40,7 +46,8 @@ final class Medication {
             "intakeFrequency": intakeFrequency,
             "startDate": Timestamp(date: startDate),  // Firestore-compatible
             "endDate": Timestamp(date: endDate),      // Firestore-compatible
-            "expiryDate": Timestamp(date: expiryDate) // Store as Firestore timestamp
+            "expiryDate": Timestamp(date: expiryDate), // Store as Firestore timestamp
+            "reminderDays": Array(reminderDays)
         ]
     }
 

@@ -30,7 +30,6 @@
 		B92AC7AB2CD15A8E001B71DA /* Passwordview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */; };
 		B941ABE32CDCB977003121A9 /* NotificationManager .swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABE22CDCB977003121A9 /* NotificationManager .swift */; };
 		B941ABE72CDCC0AE003121A9 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */; };
-		B941ABEB2CDCE24A003121A9 /* MedicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABEA2CDCE24A003121A9 /* MedicationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +75,6 @@
 		B941ABDB2CDBDCB9003121A9 /* Medbox Genie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Medbox Genie.entitlements"; sourceTree = "<group>"; };
 		B941ABE22CDCB977003121A9 /* NotificationManager .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationManager .swift"; sourceTree = "<group>"; };
 		B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
-		B941ABEA2CDCE24A003121A9 /* MedicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +133,6 @@
 				AAB342592CD95B7F00190DA3 /* AddMedicationView.swift */,
 				AAB3425B2CD974E200190DA3 /* ViewMedicationMethods.swift */,
 				B941ABE22CDCB977003121A9 /* NotificationManager .swift */,
-				B941ABEA2CDCE24A003121A9 /* MedicationManager.swift */,
 				B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */,
 			);
 			path = Medication;
@@ -351,7 +348,6 @@
 				B941ABE32CDCB977003121A9 /* NotificationManager .swift in Sources */,
 				AAB3425C2CD974E300190DA3 /* ViewMedicationMethods.swift in Sources */,
 				AAB342622CD978E100190DA3 /* LaunchApp.swift in Sources */,
-				B941ABEB2CDCE24A003121A9 /* MedicationManager.swift in Sources */,
 				B941ABE72CDCC0AE003121A9 /* NotificationDelegate.swift in Sources */,
 				B92AC76E2CCED4B4001B71DA /* Medbox_GenieApp.swift in Sources */,
 				B92AC79A2CCFD10C001B71DA /* LoginPageView.swift in Sources */,
