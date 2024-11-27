@@ -74,55 +74,56 @@ struct MainPageView: View {
             print("User not authenticated")
             return
         }
-        
+
         db.collection("users").document(userId).collection("medications").getDocuments { snapshot, error in
             if let error = error {
                 print("Error fetching medications: \(error.localizedDescription)")
                 return
             }
-            
+
             var fetchedMedications: [Medication] = []
-            
+
             if let documents = snapshot?.documents {
                 for document in documents {
                     let data = document.data()
-                    
+
                     if let medicineName = data["medicineName"] as? String,
-                       let medicineDosage = data["medicineDosage"] as? String,
-                       let numberOfTablets = data["numberOfTablets"] as? Int,
-                       let prescribedDosage = data["prescribedDosage"] as? String,
-                       let intakeFrequency = data["intakeFrequency"] as? Int,
+                       let frequency = data["frequency"] as? Int,
+                       let startHour = data["startHour"] as? Int,
+                       let startMinute = data["startMinute"] as? Int,
+                       let duration = data["duration"] as? Int,
+                       let totalPills = data["totalPills"] as? Int,
                        let startDateTimestamp = data["startDate"] as? Timestamp,
-                       let endDateTimestamp = data["endDate"] as? Timestamp,
                        let expiryDateTimestamp = data["expiryDate"] as? Timestamp {
                         
                         let startDate = startDateTimestamp.dateValue()
-                        let endDate = endDateTimestamp.dateValue()
                         let expiryDate = expiryDateTimestamp.dateValue()
-                        
+
                         let medication = Medication(
                             medicineName: medicineName,
-                            medicineDosage: medicineDosage,
-                            numberOfTablets: numberOfTablets,
-                            prescribedDosage: prescribedDosage,
-                            intakeFrequency: intakeFrequency,
+                            frequency: frequency,
+                            startHour: startHour,
+                            startMinute: startMinute,
+                            duration: duration,
                             startDate: startDate,
-                            endDate: endDate,
-                            expiryDate: expiryDate
+                            expiryDate: expiryDate,
+                            totalPills: totalPills
                         )
-                        
+
                         fetchedMedications.append(medication)
                     } else {
                         print("Skipping document due to missing or invalid data.")
                     }
                 }
             }
-            
+
+            // Update the medications array on the main thread
             DispatchQueue.main.async {
                 self.medications = fetchedMedications
             }
         }
     }
+
 
     private func deleteMedications(at offsets: IndexSet) {
         // Implement delete functionality if needed

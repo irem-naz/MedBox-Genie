@@ -3,22 +3,17 @@ import FirebaseAuth
 import FirebaseFirestore
 import UserNotifications
 
-
 struct AddMedicationView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var medicineName: String = ""
-    @State private var medicineDosage: String = ""
-    @State private var numberOfTablets: Int = 0
-    @State private var prescribedDosage: String = ""
-    @State private var intakeFrequency: Int = 0
+    @State private var frequency: Int = 1
+    @State private var startTime: Date = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())! // Default to 8:00 AM
+    @State private var duration: Int = 10
     @State private var startDate: Date = Date()
-    @State private var endDate: Date = Date()
     @State private var expiryDate: Date = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
-    @State private var selectedDays: Set<String> = [] // New state for reminder days
+    @State private var totalPills: Int = 0 // New state for total pills
     @State private var showErrorMessage = false
     @State private var errorMessage = ""
-    
-    let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
     var onSave: (() -> Void)?
     
@@ -27,46 +22,34 @@ struct AddMedicationView: View {
             Form {
                 Section(header: Text("Medication Details")) {
                     TextField("Medicine Name", text: $medicineName)
-                    TextField("Medicine Dosage", text: $medicineDosage)
-                    Stepper("Number of Tablets: \(numberOfTablets)", value: $numberOfTablets, in: 1...100)
-                    TextField("Prescribed Dosage", text: $prescribedDosage)
-                    Stepper("Intake Frequency: \(intakeFrequency)", value: $intakeFrequency, in: 1...10)
-                    VStack(alignment: .leading){
-                        Text("Reminder Days").font(.headline)
-                        ForEach(daysOfWeek, id: \.self){day in
-                            HStack{
-                                Text(day)
-                                Spacer()
-                                if selectedDays.contains(day){
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(.blue)
-                                        .onTapGesture{
-                                            selectedDays.remove(day)
-                                        }
-                                }else{
-                                    Image(systemName: "circle")
-                                        .foregroundColor(.gray)
-                                        .onTapGesture{
-                                            selectedDays.insert(day)
-                                        }
-                                }
-                            }
-                            .padding(.vertical, 4)
-                        }
+                    
+                    Stepper("Frequency: \(frequency) dose(s) per day", value: $frequency, in: 1...6)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Start Time")
+                            .font(.subheadline)
+                        
+                        // Time picker for start time
+                        DatePicker("Select Time", selection: $startTime, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(WheelDatePickerStyle())
+                            .labelsHidden() // Hides the label
                     }
+                    
+                    Stepper("Duration: \(duration) day(s)", value: $duration, in: 1...30)
+                    
+                    // New input field for total pills
+                    Stepper("Total Pills: \(totalPills)", value: $totalPills, in: 1...500)
                 }
-                
                 
                 Section(header: Text("Dates")) {
                     DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
-                    DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: .date)
-                    DatePicker("Expiry Date", selection: $expiryDate, in: Date()..., displayedComponents: .date)
+                    DatePicker("Expiry Date", selection: $expiryDate, in: startDate..., displayedComponents: .date)
                 }
                 
                 Button("Add Medication") {
                     addMedicationToFirebase()
                 }
-                .disabled(medicineName.isEmpty || medicineDosage.isEmpty || numberOfTablets == 0 || prescribedDosage.isEmpty || intakeFrequency == 0)
+                .disabled(medicineName.isEmpty || totalPills == 0) // Disable button if totalPills is not set
             }
             .navigationBarTitle("Add Medication", displayMode: .inline)
             .navigationBarItems(trailing: Button("Cancel") {
@@ -85,22 +68,20 @@ struct AddMedicationView: View {
             return
         }
         
-        guard endDate > startDate else {
-            errorMessage = "End date must be later than start date."
-            showErrorMessage = true
-            return
-        }
+        let calendar = Calendar.current
+        let startHour = calendar.component(.hour, from: startTime)
+        let startMinute = calendar.component(.minute, from: startTime)
         
+        // Create the medication object with totalPills
         let medication = Medication(
             medicineName: medicineName,
-            medicineDosage: medicineDosage,
-            numberOfTablets: numberOfTablets,
-            prescribedDosage: prescribedDosage,
-            intakeFrequency: intakeFrequency,
+            frequency: frequency,
+            startHour: startHour,
+            startMinute: startMinute,
+            duration: duration,
             startDate: startDate,
-            endDate: endDate,
             expiryDate: expiryDate,
-            reminderDays: selectedDays
+            totalPills: totalPills // Pass totalPills
         )
         
         let db = Firestore.firestore()
@@ -109,22 +90,8 @@ struct AddMedicationView: View {
                 errorMessage = "Failed to save medication: \(error.localizedDescription)"
                 showErrorMessage = true
             } else {
-                // Schedule Expiry Notification
-                NotificationManager.shared.scheduleExpiryNotification(
-                    for: medication.medicineName,
-                    at: medication.expiryDate,
-                    userId: userId
-                )
-                
-                // Schedule Reminder Notifications
-                NotificationManager.shared.scheduleReminderNotifications(
-                    for: medication.medicineName,
-                    on: medication.reminderDays,
-                    after: medication.startDate,
-                    until: medication.endDate, // Pass the `endDate` here
-                    userId: userId
-                )
-                
+                // Schedule notifications for the medication
+                NotificationManager.shared.scheduleReminderNotifications(for: medication, userId: userId)
                 onSave?()
                 dismiss()
             }

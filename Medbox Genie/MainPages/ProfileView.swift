@@ -25,32 +25,6 @@ struct ProfileView: View {
             
             Divider().padding(.vertical)
             
-            Text("Preferences")
-                .font(.headline)
-                .padding(.bottom, 10)
-            
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Notification Time")
-                    .font(.subheadline)
-                
-                // Time-only picker
-                DatePicker("Select Time", selection: $notificationTime, displayedComponents: .hourAndMinute)
-                    .datePickerStyle(WheelDatePickerStyle())
-                    .labelsHidden() // Hides the label
-                
-                Button(action: saveNotificationTime) {
-                    Text("Save Notification Time")
-                        .font(.body)
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                .padding(.top, 10)
-            }
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(10)
             
             Spacer()
             
@@ -76,57 +50,8 @@ struct ProfileView: View {
             }
             .padding(.bottom, 30)
         }
-        .padding()
-        .onAppear(perform: loadNotificationTime) // Load saved notification time
-    }
+}
     
-    private func saveNotificationTime() {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            print("[ERROR] User not authenticated")
-            return
-        }
-        
-        // Save the time to Firestore
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: notificationTime)
-        let minute = calendar.component(.minute, from: notificationTime)
-        
-        db.collection("users").document(userId).setData(["notificationTime": ["hour": hour, "minute": minute]], merge: true) { error in
-            if let error = error {
-                print("[ERROR] Failed to save notification time: \(error.localizedDescription)")
-            } else {
-                print("[INFO] Notification time saved successfully: \(hour):\(minute)")
-            }
-        }
-    }
-    
-    private func loadNotificationTime() {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            print("[ERROR] User not authenticated")
-            return
-        }
-        
-        // Load the time from Firestore
-        db.collection("users").document(userId).getDocument { snapshot, error in
-            if let error = error {
-                print("[ERROR] Failed to load notification time: \(error.localizedDescription)")
-                return
-            }
-            
-            if let data = snapshot?.data(),
-               let timeData = data["notificationTime"] as? [String: Int],
-               let hour = timeData["hour"],
-               let minute = timeData["minute"] {
-                let calendar = Calendar.current
-                if let newTime = calendar.date(bySettingHour: hour, minute: minute, second: 0, of: Date()) {
-                    notificationTime = newTime
-                    print("[INFO] Notification time loaded: \(hour):\(minute)")
-                }
-            } else {
-                print("[INFO] No notification time found, using default.")
-            }
-        }
-    }
     
     private func logOff() {
         do {

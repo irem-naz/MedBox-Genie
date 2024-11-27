@@ -28,7 +28,7 @@
 		B92AC7A72CD15415001B71DA /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B92AC7A62CD15415001B71DA /* FirebaseFirestoreCombine-Community */; };
 		B92AC7A92CD158F8001B71DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B92AC7A82CD158F8001B71DA /* GoogleService-Info.plist */; };
 		B92AC7AB2CD15A8E001B71DA /* Passwordview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */; };
-		B941ABE32CDCB977003121A9 /* NotificationManager .swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABE22CDCB977003121A9 /* NotificationManager .swift */; };
+		B941ABE32CDCB977003121A9 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABE22CDCB977003121A9 /* NotificationManager.swift */; };
 		B941ABE72CDCC0AE003121A9 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,7 +73,7 @@
 		B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passwordview.swift; sourceTree = "<group>"; };
 		B941ABD82CDBCDAD003121A9 /* Medbox-Genie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Medbox-Genie-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B941ABDB2CDBDCB9003121A9 /* Medbox Genie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Medbox Genie.entitlements"; sourceTree = "<group>"; };
-		B941ABE22CDCB977003121A9 /* NotificationManager .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationManager .swift"; sourceTree = "<group>"; };
+		B941ABE22CDCB977003121A9 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,7 +132,7 @@
 				AAB342572CD958E200190DA3 /* Medication.swift */,
 				AAB342592CD95B7F00190DA3 /* AddMedicationView.swift */,
 				AAB3425B2CD974E200190DA3 /* ViewMedicationMethods.swift */,
-				B941ABE22CDCB977003121A9 /* NotificationManager .swift */,
+				B941ABE22CDCB977003121A9 /* NotificationManager.swift */,
 				B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */,
 			);
 			path = Medication;
@@ -345,7 +345,7 @@
 				AAB342522CD93DD500190DA3 /* MainPageView.swift in Sources */,
 				AAB342582CD958E200190DA3 /* Medication.swift in Sources */,
 				AAB342562CD9575900190DA3 /* NotificationMenuView.swift in Sources */,
-				B941ABE32CDCB977003121A9 /* NotificationManager .swift in Sources */,
+				B941ABE32CDCB977003121A9 /* NotificationManager.swift in Sources */,
 				AAB3425C2CD974E300190DA3 /* ViewMedicationMethods.swift in Sources */,
 				AAB342622CD978E100190DA3 /* LaunchApp.swift in Sources */,
 				B941ABE72CDCC0AE003121A9 /* NotificationDelegate.swift in Sources */,

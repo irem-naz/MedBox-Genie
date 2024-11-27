@@ -36,87 +36,80 @@ class NotificationManager {
     }
     
     // MARK: - Schedule Expiry Notification
-    func scheduleExpiryNotification(for medicationName: String, at expiryDate: Date, userId: String) {
-        let notificationIdentifier = "\(userId)_\(medicationName)_expiry"
+    func scheduleExpiryNotification(for medication: Medication, userId: String) {
+        let notificationIdentifier = "\(userId)_\(medication.medicineName)_expiry"
         
         // Remove existing notification for this medication
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
         
         let content = UNMutableNotificationContent()
         content.title = "Medication Expiry Alert"
-        content.body = "Your medication '\(medicationName)' is expiring soon."
+        content.body = "Your medication '\(medication.medicineName)' has expired."
         content.sound = .default
         content.categoryIdentifier = "MEDICATION_CATEGORY"
         
-        // Use the provided expiry date for scheduling
-        let triggerDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: expiryDate)
+        let triggerDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: medication.expiryDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
         
         let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
-        
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
                 print("[ERROR] Error scheduling expiry notification: \(error.localizedDescription)")
             } else {
-                print("[DEBUG] Expiry notification scheduled for \(medicationName) at \(triggerDateComponents) for user \(userId).")
+                print("[DEBUG] Expiry notification scheduled for \(medication.medicineName) at \(triggerDateComponents).")
             }
         }
     }
+
     
-    func scheduleReminderNotifications(for medicationName: String, on reminderDays: Set<String>, after startDate: Date, until endDate: Date, userId: String) {
-        fetchNotificationTime(for: userId) { preferredTime in
-            guard let preferredTime = preferredTime else {
-                print("[ERROR] Preferred notification time not set. Skipping reminder notifications.")
-                return
-            }
-            
-            let calendar = Calendar.current
-            let daySymbols = calendar.shortWeekdaySymbols // ["Sun", "Mon", "Tue", ...]
-            
-            for day in reminderDays {
-                guard let targetDayIndex = daySymbols.firstIndex(of: day) else {
-                    print("[ERROR] Invalid day: \(day). Skipping.")
-                    continue
+    func scheduleReminderNotifications(for medication: Medication, userId: String) {
+        let calendar = Calendar.current
+        let intervalBetweenDoses = 24 / medication.frequency
+        var currentDate = medication.startDate
+        var remainingPills = medication.totalPills
+
+        outerLoop: for _ in 0..<medication.duration { // Loop through days
+            for doseIndex in 0..<medication.frequency { // Loop through doses in a day
+                guard remainingPills > 0 else {
+                    print("[INFO] No pills left to schedule further reminders.")
+                    break outerLoop
                 }
-                
-                // Start with the first occurrence of the target day after the start date
-                var nextReminderDate = self.getNextReminderDate(for: targetDayIndex, after: startDate, with: preferredTime)
-                
-                print("[DEBUG] Scheduling reminders for \(day):") // Debug: Print which day we're processing
-                
-                while let reminderDate = nextReminderDate, reminderDate <= endDate {
-                    // Debug: Log the date for this reminder
-                    print("    [DEBUG] Reminder Date: \(reminderDate)")
-                    
-                    let notificationIdentifier = "\(userId)_\(medicationName)_\(day)_\(reminderDate)"
-                    
-                    // Create the notification content
-                    let content = UNMutableNotificationContent()
-                    content.title = "Medication Reminder"
-                    content.body = "Time to take your medication: \(medicationName)."
-                    content.sound = .default
-                    content.categoryIdentifier = "MEDICATION_CATEGORY"
-                    
-                    // Schedule the notification
-                    let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: reminderDate)
-                    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
-                    
-                    let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
-                    
-                    UNUserNotificationCenter.current().add(request) { error in
-                        if let error = error {
-                            print("[ERROR] Error scheduling reminder notification: \(error.localizedDescription)")
-                        } else {
-                            print("[DEBUG] Reminder notification scheduled for \(medicationName) on \(day) at \(triggerDateComponents).")
-                        }
+
+                let doseHour = medication.startHour + doseIndex * intervalBetweenDoses
+                let doseTime = calendar.date(bySettingHour: doseHour % 24, minute: medication.startMinute, second: 0, of: currentDate)!
+
+                // Schedule the notification
+                let notificationIdentifier = "\(userId)_\(medication.medicineName)_\(doseTime)"
+                let content = UNMutableNotificationContent()
+                content.title = "Medication Reminder"
+                content.body = "Time to take your medication: \(medication.medicineName). Pills left: \(remainingPills - 1)."
+                content.sound = .default
+                content.categoryIdentifier = "MEDICATION_CATEGORY"
+
+                let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: doseTime)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+
+                let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        print("[ERROR] Error scheduling reminder notification: \(error.localizedDescription)")
+                    } else {
+                        print("[DEBUG] Reminder notification scheduled for \(medication.medicineName) at \(triggerDateComponents).")
                     }
-                    
-                    // Move to the next occurrence (add 7 days to get the next week)
-                    nextReminderDate = calendar.date(byAdding: .day, value: 7, to: reminderDate)
                 }
+
+                // Deduct one pill for the scheduled reminder
+                remainingPills -= 1
             }
+
+            // Move to the next day
+            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
         }
+
+        // Log final state
+        print("[INFO] Scheduled reminders up to the pill limit. Remaining pills: \(remainingPills)")
     }
+
 
     
     // MARK: - Fetch Notification Time from Firestore

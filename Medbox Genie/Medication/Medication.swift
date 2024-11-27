@@ -3,77 +3,69 @@ import FirebaseFirestore
 
 final class Medication {
     var medicineName: String          // Name of the medicine
-    var medicineDosage: String        // Dosage description of the medicine
-    var numberOfTablets: Int          // Number of tablets
-    var prescribedDosage: String      // Prescribed dosage information
-    var intakeFrequency: Int          // Frequency of intake (e.g., "twice daily")
-    var startDate: Date
-    var endDate: Date
-    var expiryDate: Date              // Expiry date (only date portion stored)
-    var reminderDays: Set<String> // Example: ["Mon", "Wed", "Fri"]
+    var frequency: Int                // Doses per day (e.g., 1, 2, 3, 4, 6)
+    var startHour: Int                // Hour for the first dose (e.g., 8 for 8:00 AM)
+    var startMinute: Int              // Minute for the first dose (e.g., 15 for 8:15 AM)
+    var duration: Int                 // Duration of medication in days
+    var startDate: Date               // Start date for the medication
+    var expiryDate: Date              // Expiry date for the medication
+    var totalPills: Int               // Total number of pills in the package
 
     init(medicineName: String,
-         medicineDosage: String,
-         numberOfTablets: Int,
-         prescribedDosage: String,
-         intakeFrequency: Int,
+         frequency: Int,
+         startHour: Int,
+         startMinute: Int,
+         duration: Int,
          startDate: Date,
-         endDate: Date,
          expiryDate: Date,
-         reminderDays: Set<String> = []) {
-        
-        
-        
-        
+         totalPills: Int) {
         self.medicineName = medicineName
-        self.medicineDosage = medicineDosage
-        self.numberOfTablets = numberOfTablets
-        self.prescribedDosage = prescribedDosage
-        self.intakeFrequency = intakeFrequency
+        self.frequency = frequency
+        self.startHour = startHour
+        self.startMinute = startMinute
+        self.duration = duration
         self.startDate = startDate
-        self.endDate = endDate
-        self.expiryDate = Calendar.current.startOfDay(for: expiryDate) // Store only date
-        self.reminderDays = reminderDays
+        self.expiryDate = Calendar.current.startOfDay(for: expiryDate) // Store only the date
+        self.totalPills = totalPills
     }
     
     // Convert the medication object into a Firestore-compatible dictionary
     func toDictionary() -> [String: Any] {
         return [
             "medicineName": medicineName,
-            "medicineDosage": medicineDosage,
-            "numberOfTablets": numberOfTablets,
-            "prescribedDosage": prescribedDosage,
-            "intakeFrequency": intakeFrequency,
+            "frequency": frequency,
+            "startHour": startHour,
+            "startMinute": startMinute,
+            "duration": duration,
             "startDate": Timestamp(date: startDate),  // Firestore-compatible
-            "endDate": Timestamp(date: endDate),      // Firestore-compatible
-            "expiryDate": Timestamp(date: expiryDate), // Store as Firestore timestamp
-            "reminderDays": Array(reminderDays)
+            "expiryDate": Timestamp(date: expiryDate), // Firestore-compatible
+            "totalPills": totalPills
         ]
     }
 
     // Parse Firestore data back into a Medication object
     static func fromDictionary(_ data: [String: Any]) -> Medication? {
         guard let medicineName = data["medicineName"] as? String,
-              let medicineDosage = data["medicineDosage"] as? String,
-              let numberOfTablets = data["numberOfTablets"] as? Int,
-              let prescribedDosage = data["prescribedDosage"] as? String,
-              let intakeFrequency = data["intakeFrequency"] as? Int,
+              let frequency = data["frequency"] as? Int,
+              let startHour = data["startHour"] as? Int,
+              let startMinute = data["startMinute"] as? Int,
+              let duration = data["duration"] as? Int,
               let startDate = (data["startDate"] as? Timestamp)?.dateValue(),
-              let endDate = (data["endDate"] as? Timestamp)?.dateValue(),
-              let expiryDate = (data["expiryDate"] as? Timestamp)?.dateValue() else {
+              let expiryDate = (data["expiryDate"] as? Timestamp)?.dateValue(),
+              let totalPills = data["totalPills"] as? Int else {
             print("[ERROR] Missing or invalid fields while parsing Medication.")
             return nil
         }
         
         return Medication(
             medicineName: medicineName,
-            medicineDosage: medicineDosage,
-            numberOfTablets: numberOfTablets,
-            prescribedDosage: prescribedDosage,
-            intakeFrequency: intakeFrequency,
+            frequency: frequency,
+            startHour: startHour,
+            startMinute: startMinute,
+            duration: duration,
             startDate: startDate,
-            endDate: endDate,
-            expiryDate: expiryDate
+            expiryDate: expiryDate,
+            totalPills: totalPills
         )
     }
 }
