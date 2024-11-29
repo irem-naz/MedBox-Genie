@@ -34,6 +34,32 @@ class NotificationManager {
         
         UNUserNotificationCenter.current().setNotificationCategories([medicationCategory])
     }
+    func scheduleLowStockNotification(for medication: Medication, userId: String) {
+        if medication.totalPills <= 5 {
+            let notificationIdentifier = "\(userId)_\(medication.medicineName)_low_stock"
+            
+            // Remove existing notification for this medication
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Medication Low Stock Alert"
+            content.body = "Your medication '\(medication.medicineName)' is running low. Please refill soon."
+            content.sound = .default
+            content.categoryIdentifier = "MEDICATION_CATEGORY"
+            
+            let triggerDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("[ERROR] Error scheduling low stock notification: \(error.localizedDescription)")
+                } else {
+                    print("[DEBUG] Low stock notification scheduled for \(medication.medicineName) at \(triggerDateComponents).")
+                }
+            }
+        }
+    }
     
     // MARK: - Schedule Expiry Notification
     func scheduleExpiryNotification(for medication: Medication, userId: String) {
