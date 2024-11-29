@@ -35,6 +35,36 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     
     private func handleAccept(for medicationName: String) {
         print("[DEBUG] Marking medication '\(medicationName)' as taken.")
+
+        let db = Firestore.firestore()
+        let medicationRef = db.collection("users").document(userId).collection("medications").whereField("medicineName", isEqualTo: medicationName)
         
+        medicationRef.getDocuments { snapshot, error in
+            if let error = error {
+                print("[ERROR] Failed to fetch medication: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let document = snapshot?.documents.first else {
+                print("[ERROR] Medication not found.")
+                return
+            }
+            
+            var medicationData = document.data()
+            if var totalPills = medicationData["totalPills"] as? Int, totalPills > 0 {
+                totalPills -= 1
+                medicationData["totalPills"] = totalPills
+                
+                document.reference.updateData(medicationData) { error in
+                    if let error = error {
+                        print("[ERROR] Failed to update medication: \(error.localizedDescription)")
+                    } else {
+                        print("[DEBUG] Medication '\(medicationName)' total pills updated to \(totalPills).")
+                    }
+                }
+            } else {
+                print("[ERROR] Invalid total pills count.")
+            }
+        }
     }
 }
