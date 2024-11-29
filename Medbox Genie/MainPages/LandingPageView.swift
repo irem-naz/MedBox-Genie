@@ -7,16 +7,16 @@ struct LandingPageView: View {
 
     var body: some View {
         ZStack {
-            Color(.systemTeal).edgesIgnoringSafeArea(.all)
+            Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 40) {
                 // Logo Placeholder
                 Circle()
-                    .fill(Color.white.opacity(0.3))
+                    .fill(Color(.secondarySystemBackground))
                     .frame(width: 120, height: 120)
                     .overlay(
                         Text("Logo")
-                            .foregroundColor(.red)
+                            .foregroundColor(.primary)
                             .font(.title)
                             .fontWeight(.bold)
                     )
@@ -25,7 +25,7 @@ struct LandingPageView: View {
                 Text("Welcome to Medbox Genie")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 
                 // Login Button
                 Button(action: {
@@ -36,11 +36,11 @@ struct LandingPageView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(width: 200, height: 50)
-                        .background(Color.red)
+                        .background(Color.blue)
                         .cornerRadius(10)
                 }
                 .fullScreenCover(isPresented: $showLogin) {
-                    LoginPageView(isLoggedIn: $isLoggedIn) // Replace with actual binding if needed
+                    LoginPageView(isLoggedIn: $isLoggedIn)
                 }
 
                 // Sign Up Button
@@ -50,20 +50,26 @@ struct LandingPageView: View {
                     Text("Sign Up")
                         .font(.title2)
                         .fontWeight(.semibold)
-                        .foregroundColor(.red)
+                        .foregroundColor(.blue)
                         .frame(width: 200, height: 50)
                         .background(Color.clear)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.red, lineWidth: 2)
+                                .stroke(Color.blue, lineWidth: 2)
                         )
                 }
                 .fullScreenCover(isPresented: $showSignUp) {
-                    SignUpPageView(isSignedUp: $showSignUp) // Pass binding to dismiss after sign-up
+                    SignUpPageView(isSignedUp: $showSignUp)
                 }
             }
             .padding()
         }
+    }
+}
+
+struct LandingPageView_Previews: PreviewProvider {
+    static var previews: some View {
+        LandingPageView(isLoggedIn: .constant(false))
     }
 }
 
