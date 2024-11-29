@@ -13,7 +13,7 @@
 	<key>PROJECT_ID</key>
 	<string>medbox-genie</string>
 	<key>STORAGE_BUCKET</key>
-	<string>medbox-genie.appspot.com</string>
+	<string>medbox-genie.firebasestorage.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>

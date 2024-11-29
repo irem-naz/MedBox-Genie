@@ -48,7 +48,11 @@ class NotificationManager {
         content.sound = .default
         content.categoryIdentifier = "MEDICATION_CATEGORY"
         
-        let triggerDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: medication.expiryDate)
+        let calendar = Calendar.current
+        // Directly use the hour and minute set in add medication
+        let expiryDateTime = calendar.date(bySettingHour: medication.startHour, minute: medication.startMinute+2, second: 0, of: medication.expiryDate) ?? medication.expiryDate
+        
+        let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: expiryDateTime)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
         
         let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
@@ -60,6 +64,7 @@ class NotificationManager {
             }
         }
     }
+
 
     
     func scheduleReminderNotifications(for medication: Medication, userId: String) {

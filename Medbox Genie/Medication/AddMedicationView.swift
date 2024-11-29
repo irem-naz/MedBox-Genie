@@ -92,6 +92,7 @@ struct AddMedicationView: View {
             } else {
                 // Schedule notifications for the medication
                 NotificationManager.shared.scheduleReminderNotifications(for: medication, userId: userId)
+                NotificationManager.shared.scheduleExpiryNotification(for: medication, userId: userId)
                 onSave?()
                 dismiss()
             }
