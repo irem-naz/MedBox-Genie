@@ -7,12 +7,11 @@ struct LoginPageView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var showErrorMessage = false
-    @State private var showSuccessMessage = false // State for showing the success alert
     @State private var errorMessage = ""
 
     var body: some View {
         ZStack {
-            Color(.systemTeal).edgesIgnoringSafeArea(.all)
+            Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 16) {
                 // Back Button
@@ -24,22 +23,24 @@ struct LoginPageView: View {
                             Image(systemName: "arrow.left")
                             Text("Back")
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)
                         .padding()
                     }
                     Spacer()
                 }
                 
+                Spacer()
+                
                 Text("Welcome Back")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                     .padding(.top, 20)
                 
                 // Email Field
                 TextField("Email", text: $email)
                     .padding()
-                    .background(Color.white)
+                    .background(Color(.secondarySystemBackground))
                     .cornerRadius(8)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
@@ -48,6 +49,7 @@ struct LoginPageView: View {
                 
                 // Password Field with Visibility Toggle
                 PasswordField(password: $password)
+                    .padding(.horizontal, 20)
 
                 // Login Button
                 Button(action: validateAndLogin) {
@@ -61,23 +63,14 @@ struct LoginPageView: View {
                 }
                 .disabled(email.isEmpty || password.isEmpty)
                 .padding(.top, 20)
+                
+                Spacer()
             }
             .padding()
         }
         .alert(isPresented: $showErrorMessage) {
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }
-//        .alert(isPresented: $showSuccessMessage) {
-//            Alert(title: Text("Success"), message: Text("Login successful!"), dismissButton: .default(Text("OK")) {
-//                // Delay before setting isLoggedIn to true
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                    isLoggedIn = true // Show black screen after success alert
-//                }
-//            })
-//        }
-//        .fullScreenCover(isPresented: $isLoggedIn) {
-//            SuccessView()
-//        }
     }
 
     private func validateAndLogin() {
@@ -92,22 +85,8 @@ struct LoginPageView: View {
                 errorMessage = "Try again" // Custom message for failed login
                 showErrorMessage = true
             } else {
-//                showSuccessMessage = true  // Show success alert on successful login
                 isLoggedIn = true  // Set to true on successful login
-                presentationMode.wrappedValue.dismiss() // Dismiss login view
             }
-        }
-    }
-}
-
-// Simple Success View
-struct SuccessView: View {
-    var body: some View {
-        ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
-            Text("Login Successful")
-                .font(.title)
-                .foregroundColor(.white)
         }
     }
 }
