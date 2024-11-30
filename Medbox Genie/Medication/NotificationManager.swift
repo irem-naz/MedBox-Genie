@@ -19,7 +19,6 @@ class NotificationManager {
             }
         }
     }
-    
     // MARK: - Setup Notification Categories
     private func setupNotificationCategories() {
         let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION", title: "Accept", options: [.foreground])
@@ -65,8 +64,70 @@ class NotificationManager {
         }
     }
 
+    // MARK: - low stock medication Noitification
+    func scheduleLowStockNotification(for medication: Medication, userId: String) {
+        let calendar = Calendar.current
+        var remainingPills = medication.totalPills
 
-    
+        // Check if stock is already low at the start
+        if remainingPills <= 3 {
+            print("[INFO] Medication \(medication.medicineName) starts with critically low stock: \(remainingPills) pills.")
+            let lowStockNotificationTime = calendar.date(byAdding: .minute, value: 4, to: Date())!
+
+            let content = UNMutableNotificationContent()
+            content.title = "Low Stock Alert"
+            content.body = "You have critically low stock of \(medication.medicineName). Only \(remainingPills) pill(s) available. Please refill soon!"
+            content.sound = .default
+            content.categoryIdentifier = "MEDICATION_CATEGORY"
+
+            let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: lowStockNotificationTime)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+
+            let notificationIdentifier = "\(userId)_\(medication.medicineName)_lowstock"
+            let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
+
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("[ERROR] Error scheduling low stock notification: \(error.localizedDescription)")
+                } else {
+                    print("[DEBUG] Low stock notification scheduled for \(medication.medicineName) at \(triggerDateComponents).")
+                }
+            }
+            return
+        }
+
+        // Loop to track pill usage (for cases where stock starts above threshold)
+        for dose in 1...(medication.frequency * medication.duration) {
+            remainingPills -= 1
+
+            if remainingPills <= 3 {
+                let lowStockNotificationTime = calendar.date(byAdding: .minute, value: 4, to: Date())!
+
+                let content = UNMutableNotificationContent()
+                content.title = "Low Stock Alert"
+                content.body = "You have low stock of \(medication.medicineName). Only \(remainingPills) pill(s) left. Please refill soon!"
+                content.sound = .default
+                content.categoryIdentifier = "MEDICATION_CATEGORY"
+
+                let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: lowStockNotificationTime)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+
+                let notificationIdentifier = "\(userId)_\(medication.medicineName)_lowstock"
+                let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
+
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        print("[ERROR] Error scheduling low stock notification: \(error.localizedDescription)")
+                    } else {
+                        print("[DEBUG] Low stock notification scheduled for \(medication.medicineName) at \(triggerDateComponents).")
+                    }
+                }
+                break
+            }
+        }
+    }
+
+    // MARK: - Reminder medication Noitification
     func scheduleReminderNotifications(for medication: Medication, userId: String) {
         let calendar = Calendar.current
         let intervalBetweenDoses = 24 / medication.frequency

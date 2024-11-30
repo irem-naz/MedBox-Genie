@@ -7,7 +7,7 @@ struct PasswordField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Password")
-                .foregroundColor(.white)
+                .foregroundColor(.blue)
                 .fontWeight(.semibold)
             
             ZStack {
@@ -16,6 +16,10 @@ struct PasswordField: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.blue, lineWidth: 2) ) // Blue border
+                        .foregroundColor(.blue)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                 } else {
@@ -23,6 +27,10 @@ struct PasswordField: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.blue, lineWidth: 2))
+                        .foregroundColor(.blue)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                 }

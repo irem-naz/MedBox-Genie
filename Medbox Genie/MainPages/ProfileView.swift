@@ -12,46 +12,88 @@ struct ProfileView: View {
     private let db = Firestore.firestore() // Firestore reference
 
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Profile Information")
-                .font(.largeTitle)
+        ScrollView { // Use ScrollView to handle smaller screens
+            VStack(alignment: .leading, spacing: 20) { // Align content to leading
+                
+                // Profile Information Section
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Profile Information")
+                        .font(.largeTitle)
+                        .padding(.top, 20)
+                    
+                    Text("Name: \(userName)")
+                        .font(.title2)
+                        .foregroundColor(.primary)
+                    
+                    Text("Email: \(email)")
+                        .font(.title2)
+                        .foregroundColor(.primary)
+                }
+                .padding(.horizontal, 20)
+                
+                Divider()
+                    .padding(.horizontal, 20)
+
+                // App Information Section
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("App Information")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    Text("Medbox Genie is your personal health assistant that helps you manage your medications with ease.")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.leading)
+                    
+                    Text("Features:")
+                        .font(.headline)
+                        .padding(.top, 10)
+                    
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("- Medication reminders.")
+                        Text("- Low stock notifications.")
+                        Text("- Expiry notifications.")
+                        Text("- Adding new medications.")
+                        Text("- Symptom tracking to monitor your health.")
+                    }
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+                }
+                .padding(.horizontal, 20)
+                
+                Spacer()
+                
+                // Log Off Button
+                Button(action: logOff) {
+                    Text("Log Off")
+                        .font(.title3)
+                        .padding()
+                        .frame(maxWidth: .infinity) // Full-width button
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal, 20)
                 .padding(.top, 20)
-            
-            Text("Name: \(userName)")
-                .font(.title2)
-            
-            Text("Email: \(email)")
-                .font(.title2)
-            
-            Divider().padding(.vertical)
-            
-            
-            Spacer()
-            
-            Button(action: logOff) {
-                Text("Log Off")
-                    .font(.title3)
-                    .padding()
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                
+                // Close Button
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Close")
+                        .font(.title3)
+                        .padding()
+                        .frame(maxWidth: .infinity) // Full-width button
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 30)
             }
-            .padding(.bottom, 10)
-            
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Close")
-                    .font(.title3)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
-            .padding(.bottom, 30)
         }
-}
-    
+    }
     
     private func logOff() {
         do {

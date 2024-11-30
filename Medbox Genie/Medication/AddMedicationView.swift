@@ -93,6 +93,7 @@ struct AddMedicationView: View {
                 // Schedule notifications for the medication
                 NotificationManager.shared.scheduleReminderNotifications(for: medication, userId: userId)
                 NotificationManager.shared.scheduleExpiryNotification(for: medication, userId: userId)
+                NotificationManager.shared.scheduleLowStockNotification(for: medication, userId: userId)
                 onSave?()
                 dismiss()
             }

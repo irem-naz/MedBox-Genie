@@ -14,7 +14,7 @@ struct SignUpPageView: View {
 
     var body: some View {
         ZStack {
-            Color(.systemTeal).edgesIgnoringSafeArea(.all)
+            Color.white.edgesIgnoringSafeArea(.all) // Background color
             
             VStack(spacing: 16) {
                 // Back Button
@@ -22,51 +22,88 @@ struct SignUpPageView: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()  // Dismiss the view to go back
                     }) {
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(.white)
-                            .padding()
+                        HStack {
+                            Image(systemName: "arrow.left")
+                            Text("Back")
+                        }
+                        .foregroundColor(.blue)
+                        .padding()
                     }
                     Spacer()
                 }
-                
+
+                // Welcome Text
                 Text("Create Account")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .padding(.top, 40)
-                
-                TextField("Email", text: $email)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(8)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                    .padding(.horizontal, 20)
-                
-                TextField("Username", text: $username)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(8)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                    .padding(.horizontal, 20)
-                
-                PasswordField(password: $password)  // Assuming PasswordField is defined elsewhere
+                    .foregroundColor(.blue)
+                    .padding(.top, 20)
+
+                // Genie Lamp Below "Create Account"
+                Image("genieLamp") // Add your genie lamp image to Assets with the name "genieLamp"
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100) // Adjust size as needed
+                    .padding(.top, 10)
+
+                // Email Field
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Email")
+                        .foregroundColor(.blue)
+                        .fontWeight(.semibold)
+
+                    TextField("Enter your email", text: $email)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.blue, lineWidth: 2)
+                        )
+                        .foregroundColor(.blue)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .keyboardType(.emailAddress)
+                        .padding(.horizontal, 20)
+                }
+
+                // Username Field
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Username")
+                        .foregroundColor(.blue)
+                        .fontWeight(.semibold)
+
+                    TextField("Enter your username", text: $username)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.blue, lineWidth: 2)
+                        )
+                        .foregroundColor(.blue)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .padding(.horizontal, 20)
+                }
+
+                // Password Field
+                PasswordField(password: $password) // Reuse the PasswordField component
                 
                 Text("Password must be at least 8 characters long and include both letters and numbers.")
                     .font(.footnote)
-                    .foregroundColor(.white.opacity(0.8))
+                    .foregroundColor(.blue.opacity(0.8))
                     .padding(.horizontal, 20)
                 
+                // Sign Up Button
                 Button(action: validateAndSignUp) {
                     Text("Sign Up")
                         .font(.title2)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(width: 200, height: 50)
-                        .background(email.isEmpty || username.isEmpty || password.isEmpty ? Color.gray : Color.green)
-                        .cornerRadius(10)
+                        .background(email.isEmpty || username.isEmpty || password.isEmpty ? Color.gray : Color.red)
+                        .cornerRadius(20)
                 }
                 .disabled(email.isEmpty || username.isEmpty || password.isEmpty)
                 .padding(.top, 20)
@@ -142,3 +179,10 @@ struct SignUpPageView: View {
         }
     }
 }
+
+struct SignUpPageView_Previews: PreviewProvider {
+    static var previews: some View {
+        SignUpPageView(isSignedUp: .constant(false)) // Correct binding for `isSignedUp`
+    }
+}
+
