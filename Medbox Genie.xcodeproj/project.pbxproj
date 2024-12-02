@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA2B6B3C2CFDF1210068CF1A /* SurveyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B6B3B2CFDF1210068CF1A /* SurveyDetailView.swift */; };
+		AA2B6B3D2CFDF1210068CF1A /* SurveyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B6B3B2CFDF1210068CF1A /* SurveyDetailView.swift */; };
 		AAB342522CD93DD500190DA3 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342512CD93DD500190DA3 /* MainPageView.swift */; };
 		AAB342542CD9478300190DA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342532CD9478300190DA3 /* ProfileView.swift */; };
 		AAB342562CD9575900190DA3 /* NotificationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342552CD9575900190DA3 /* NotificationMenuView.swift */; };
@@ -50,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA2B6B3B2CFDF1210068CF1A /* SurveyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailView.swift; sourceTree = "<group>"; };
 		AAB342512CD93DD500190DA3 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		AAB342532CD9478300190DA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		AAB342552CD9575900190DA3 /* NotificationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMenuView.swift; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 				AAB3425B2CD974E200190DA3 /* ViewMedicationMethods.swift */,
 				B941ABE22CDCB977003121A9 /* NotificationManager.swift */,
 				B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */,
+				AA2B6B3B2CFDF1210068CF1A /* SurveyDetailView.swift */,
 			);
 			path = Medication;
 			sourceTree = "<group>";
@@ -350,6 +354,7 @@
 				AAB342622CD978E100190DA3 /* LaunchApp.swift in Sources */,
 				B941ABE72CDCC0AE003121A9 /* NotificationDelegate.swift in Sources */,
 				B92AC76E2CCED4B4001B71DA /* Medbox_GenieApp.swift in Sources */,
+				AA2B6B3C2CFDF1210068CF1A /* SurveyDetailView.swift in Sources */,
 				B92AC79A2CCFD10C001B71DA /* LoginPageView.swift in Sources */,
 				B92AC79C2CCFD955001B71DA /* LandingPageView.swift in Sources */,
 				AAB3425A2CD95B7F00190DA3 /* AddMedicationView.swift in Sources */,
@@ -361,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B92AC7812CCED4B8001B71DA /* Medbox_GenieTests.swift in Sources */,
+				AA2B6B3D2CFDF1210068CF1A /* SurveyDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -67,12 +67,12 @@ struct AddMedicationView: View {
             showErrorMessage = true
             return
         }
-        
+
         let calendar = Calendar.current
         let startHour = calendar.component(.hour, from: startTime)
         let startMinute = calendar.component(.minute, from: startTime)
-        
-        // Create the medication object with totalPills
+
+        // Create the medication object
         let medication = Medication(
             medicineName: medicineName,
             frequency: frequency,
@@ -81,22 +81,68 @@ struct AddMedicationView: View {
             duration: duration,
             startDate: startDate,
             expiryDate: expiryDate,
-            totalPills: totalPills // Pass totalPills
+            totalPills: totalPills
         )
-        
+
+        // Generate survey dates
+        let surveyDates = calculateSurveyDates(for: medication)
+        medication.surveys = surveyDates.map { Survey(date: $0, isCompleted: false, isPrompted: false, responses: [:]) }
+
         let db = Firestore.firestore()
-        db.collection("users").document(userId).collection("medications").addDocument(data: medication.toDictionary()) { error in
+        let medicationRef = db.collection("users").document(userId).collection("medications").document(medication.medicineName)
+
+        // Save medication data
+        medicationRef.setData(medication.toDictionary()) { error in
             if let error = error {
                 errorMessage = "Failed to save medication: \(error.localizedDescription)"
                 showErrorMessage = true
             } else {
-                // Schedule notifications for the medication
+                print("[DEBUG] Medication \(medication.medicineName) saved successfully.")
+
+                // Save each survey in the `surveys` sub-collection
+                for survey in medication.surveys {
+                    let surveyRef = medicationRef.collection("surveys").document("\(survey.date)")
+                    surveyRef.setData(survey.toDictionary()) { surveyError in
+                        if let surveyError = surveyError {
+                            print("[ERROR] Failed to save survey: \(surveyError.localizedDescription)")
+                        } else {
+                            print("[DEBUG] Survey saved for \(medication.medicineName) on \(survey.date).")
+                        }
+                    }
+                }
+
+                // Schedule notifications
                 NotificationManager.shared.scheduleReminderNotifications(for: medication, userId: userId)
                 NotificationManager.shared.scheduleExpiryNotification(for: medication, userId: userId)
                 NotificationManager.shared.scheduleLowStockNotification(for: medication, userId: userId)
+                NotificationManager.shared.scheduleSurveyNotifications(for: medication, userId: userId)
+
+                print("All notifications scheduled for \(medication.medicineName)")
                 onSave?()
                 dismiss()
             }
         }
     }
+
+
+    // Generate survey dates (every other day)
+    private func calculateSurveyDates(for medication: Medication) -> [Date] {
+        var dates: [Date] = []
+
+        // TEST MODE: Schedule the first survey 2 minutes after the current time
+        let testDate = Calendar.current.date(byAdding: .minute, value: 1, to: Date())!
+        dates.append(testDate)
+
+        // FUTURE MODE: Uncomment for production logic (every other day)
+        /*
+        var currentDate = Calendar.current.startOfDay(for: medication.startDate)
+        for(int i = 0; i<duration; i+=2) {
+            dates.append(currentDate)
+            currentDate = Calendar.current.date(byAdding: .day, value: 2, to: currentDate)!
+        }
+        */
+
+        return dates
+    }
+
 }

@@ -10,6 +10,7 @@ struct MainPageView: View {
     @State private var showAddMedication = false  // Control add medication view
     
     @State private var medications: [Medication] = []  // Store medications here
+    @State private var unreadNotificationsCount: Int = 0  // Track unread notifications
     private let db = Firestore.firestore()  // Reference to Firestore
     
     var body: some View {
@@ -23,7 +24,7 @@ struct MainPageView: View {
                                 .listRowInsets(EdgeInsets())
                         }
                     }
-                    .onDelete(perform: deleteMedications)
+                    
                 }
                 .navigationBarTitle("Medications", displayMode: .inline)
                 .navigationBarItems(
@@ -36,10 +37,19 @@ struct MainPageView: View {
                     trailing: HStack {
                         Button(action: {
                             showNotifications = true // Toggle notification menu
+                            unreadNotificationsCount = 0 // Reset unread count when menu is opened
                         }) {
-                            Image(systemName: "bell")
-                                .imageScale(.medium)
-                                .font(.system(size: 22))
+                            ZStack {
+                                Image(systemName: "bell")
+                                    .imageScale(.medium)
+                                    .font(.system(size: 22))
+                                if unreadNotificationsCount > 0 {
+                                    Circle()
+                                        .fill(Color.red)
+                                        .frame(width: 10, height: 10)
+                                        .offset(x: 10, y: -10) // Position the red dot
+                                }
+                            }
                         }
                         Button(action: {
                             showAddMedication = true // Show add medication view
@@ -61,11 +71,12 @@ struct MainPageView: View {
             // Slide-in Notification Menu
             if showNotifications {
                 NotificationsMenuView(showNotifications: $showNotifications)
-                    .transition(.move(edge: .trailing)) // Slide in from the right
+                    .transition(.move(edge: .trailing))
                     .zIndex(1)
             }
         }
         .onAppear(perform: fetchMedications)  // Fetch medications when view appears
+        .onAppear(perform: setupNotificationListener)
     }
     
     // Fetch Medications from Firestore
@@ -94,11 +105,13 @@ struct MainPageView: View {
                        let duration = data["duration"] as? Int,
                        let totalPills = data["totalPills"] as? Int,
                        let startDateTimestamp = data["startDate"] as? Timestamp,
-                       let expiryDateTimestamp = data["expiryDate"] as? Timestamp {
+                       let expiryDateTimestamp = data["expiryDate"] as? Timestamp,
+                       let surveyDictionaries = data["surveys"] as? [[String: Any]] {
                         
                         let startDate = startDateTimestamp.dateValue()
                         let expiryDate = expiryDateTimestamp.dateValue()
 
+                        // Create Medication object
                         let medication = Medication(
                             medicineName: medicineName,
                             frequency: frequency,
@@ -110,9 +123,13 @@ struct MainPageView: View {
                             totalPills: totalPills
                         )
 
+                        // Populate surveys
+                        medication.surveys = surveyDictionaries.compactMap { Survey.fromDictionary($0) }
+                        print("[DEBUG] Populated surveys for \(medicineName): \(medication.surveys.map { $0.date })")
+
                         fetchedMedications.append(medication)
                     } else {
-                        print("Skipping document due to missing or invalid data.")
+                        print("[DEBUG] Skipping medication due to missing data: \(data)")
                     }
                 }
             }
@@ -125,9 +142,53 @@ struct MainPageView: View {
     }
 
 
-    private func deleteMedications(at offsets: IndexSet) {
-        // Implement delete functionality if needed
+    
+    private func setupNotificationListener() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("NewSurveyNotification"), object: nil, queue: .main) { notification in
+            guard let userInfo = notification.userInfo,
+                  let medicationName = userInfo["medicationName"] as? String,
+                  let surveyDate = userInfo["surveyDate"] as? Date else {
+                print("[ERROR] Missing notification details.")
+                return
+            }
+
+            // Find the medication and survey to mark as prompted
+            if let medicationIndex = self.medications.firstIndex(where: { $0.medicineName == medicationName }),
+               let surveyIndex = self.medications[medicationIndex].surveys.firstIndex(where: {
+                   Calendar.current.isDate($0.date, equalTo: surveyDate, toGranularity: .second)
+               }) {
+                self.medications[medicationIndex].surveys[surveyIndex].isPrompted = true
+                print("[DEBUG] Marked survey as prompted for \(medicationName) on \(surveyDate)")
+
+                // Update Firestore
+                guard let userId = Auth.auth().currentUser?.uid else {
+                    print("[ERROR] User not authenticated.")
+                    return
+                }
+
+                let db = Firestore.firestore()
+                let medicationRef = db.collection("users").document(userId).collection("medications").document(medicationName)
+                let surveyRef = medicationRef.collection("surveys").document("\(surveyDate)")
+
+                surveyRef.updateData(["isPrompted": true]) { error in
+                    if let error = error {
+                        print("[ERROR] Failed to update isPrompted in Firestore: \(error.localizedDescription)")
+                    } else {
+                        print("[DEBUG] isPrompted updated in Firestore for \(medicationName) on \(surveyDate)")
+                    }
+                }
+            } else {
+                print("[DEBUG] Medication or survey not found for notification.")
+            }
+
+            // Increment unread notifications count
+            self.unreadNotificationsCount += 1
+            print("[DEBUG] Unread survey notifications count: \(self.unreadNotificationsCount)")
+        }
     }
+
+
+
 }
 
 struct MainPage_Previews: PreviewProvider {

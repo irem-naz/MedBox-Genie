@@ -218,4 +218,36 @@ class NotificationManager {
         // Set the time to the preferred notification time
         return calendar.date(bySettingHour: hour, minute: minute, second: 0, of: nextDate)
     }
+    
+    func scheduleSurveyNotifications(for medication: Medication, userId: String) {
+        print("Scheduling notifications for medication: \(medication.medicineName)")
+        for survey in medication.surveys where !survey.isCompleted {
+            print("Scheduling survey for date: \(survey.date)")
+            let content = UNMutableNotificationContent()
+            content.title = medication.medicineName // No title to suppress banner
+            content.body = "" // No body to suppress banner
+            content.sound = .default
+            content.badge = NSNumber(value: 1) // Increment the badge count
+            
+            let triggerDate = Calendar.current.dateComponents(
+                [.year, .month, .day, .hour, .minute, .second],
+                from: survey.date
+            )
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+            
+            let request = UNNotificationRequest(
+                identifier: "\(userId)_\(medication.medicineName)_survey_\(survey.date)",
+                content: content,
+                trigger: trigger
+            )
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("Error scheduling notification: \(error.localizedDescription)")
+                } else {
+                    print("Notification scheduled successfully.")
+                }
+            }
+        }
+    }
+
 }
