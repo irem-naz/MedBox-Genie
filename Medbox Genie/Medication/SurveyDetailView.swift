@@ -68,7 +68,7 @@ struct SurveyDetailView: View {
         let db = Firestore.firestore()
         let medicationRef = db.collection("users").document(userId).collection("medications").document(medication.medicineName)
 
-        // Update survey in Firestore
+        // Update survey in Firestore 
         let surveyData: [String: Any] = [
             "isCompleted": true,
             "responses": ["question1": userResponse]

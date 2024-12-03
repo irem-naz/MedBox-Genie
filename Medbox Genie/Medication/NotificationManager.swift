@@ -178,47 +178,6 @@ class NotificationManager {
 
 
     
-    // MARK: - Fetch Notification Time from Firestore
-    func fetchNotificationTime(for userId: String, completion: @escaping (Date?) -> Void) {
-        let db = Firestore.firestore()
-        db.collection("users").document(userId).getDocument { snapshot, error in
-            if let error = error {
-                print("[ERROR] Failed to fetch notification time: \(error.localizedDescription)")
-                completion(nil)
-                return
-            }
-            
-            if let data = snapshot?.data(),
-               let timeData = data["notificationTime"] as? [String: Int],
-               let hour = timeData["hour"],
-               let minute = timeData["minute"] {
-                let calendar = Calendar.current
-                let preferredTime = calendar.date(bySettingHour: hour, minute: minute, second: 0, of: Date())
-                completion(preferredTime)
-            } else {
-                print("[INFO] No notification time found. Using default.")
-                completion(nil)
-            }
-        }
-    }
-    
-    // MARK: - Calculate Next Reminder Date
-    private func getNextReminderDate(for targetDayIndex: Int, after startDate: Date, with time: Date) -> Date? {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.hour, .minute, .second], from: time)
-        let hour = components.hour ?? 0
-        let minute = components.minute ?? 0
-        
-        var nextDate = startDate
-        while calendar.component(.weekday, from: nextDate) - 1 != targetDayIndex {
-            // Move to the next day until we match the target day
-            nextDate = calendar.date(byAdding: .day, value: 1, to: nextDate) ?? nextDate
-        }
-        
-        // Set the time to the preferred notification time
-        return calendar.date(bySettingHour: hour, minute: minute, second: 0, of: nextDate)
-    }
-    
     func scheduleSurveyNotifications(for medication: Medication, userId: String) {
         print("Scheduling notifications for medication: \(medication.medicineName)")
         for survey in medication.surveys where !survey.isCompleted {
