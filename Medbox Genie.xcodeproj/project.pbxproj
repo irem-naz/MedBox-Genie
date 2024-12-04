@@ -30,6 +30,19 @@
 		B92AC7AB2CD15A8E001B71DA /* Passwordview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92AC7AA2CD15A8E001B71DA /* Passwordview.swift */; };
 		B941ABE32CDCB977003121A9 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABE22CDCB977003121A9 /* NotificationManager.swift */; };
 		B941ABE72CDCC0AE003121A9 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */; };
+		B9B886FC2CFAD2F000B20E02 /* NotificationManTEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B886FB2CFAD2F000B20E02 /* NotificationManTEST.swift */; };
+		B9B886FD2CFAD2F800B20E02 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B941ABE22CDCB977003121A9 /* NotificationManager.swift */; };
+		B9B886FE2CFAD2FB00B20E02 /* AddMedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342592CD95B7F00190DA3 /* AddMedicationView.swift */; };
+		B9B887002CFAD44600B20E02 /* MockNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B886FF2CFAD44600B20E02 /* MockNotification.swift */; };
+		B9B887032CFAD53E00B20E02 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B9B887022CFAD53E00B20E02 /* FirebaseDatabase */; };
+		B9B887052CFAD54200B20E02 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = B9B887042CFAD54200B20E02 /* FirebaseCore */; };
+		B9B887072CFAD55200B20E02 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9B887062CFAD55200B20E02 /* FirebaseAuth */; };
+		B9B887092CFAD55500B20E02 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = B9B887082CFAD55500B20E02 /* FirebaseCore */; };
+		B9B8870B2CFAD55800B20E02 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B9B8870A2CFAD55800B20E02 /* FirebaseDatabase */; };
+		B9B8870D2CFAD55D00B20E02 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B9B8870C2CFAD55D00B20E02 /* FirebaseFirestore */; };
+		B9B8870E2CFAD57E00B20E02 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB342572CD958E200190DA3 /* Medication.swift */; };
+		B9B887102CFAE8AE00B20E02 /* UserProtocl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B8870F2CFAE8AE00B20E02 /* UserProtocl.swift */; };
+		B9B887112CFAE8AE00B20E02 /* UserProtocl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B8870F2CFAE8AE00B20E02 /* UserProtocl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +88,9 @@
 		B941ABDB2CDBDCB9003121A9 /* Medbox Genie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Medbox Genie.entitlements"; sourceTree = "<group>"; };
 		B941ABE22CDCB977003121A9 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		B9B886FB2CFAD2F000B20E02 /* NotificationManTEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManTEST.swift; sourceTree = "<group>"; };
+		B9B886FF2CFAD44600B20E02 /* MockNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotification.swift; sourceTree = "<group>"; };
+		B9B8870F2CFAE8AE00B20E02 /* UserProtocl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +99,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B92AC7A72CD15415001B71DA /* FirebaseFirestoreCombine-Community in Frameworks */,
+				B9B887052CFAD54200B20E02 /* FirebaseCore in Frameworks */,
 				B92AC7A32CD15415001B71DA /* FirebaseAnalytics in Frameworks */,
+				B9B887032CFAD53E00B20E02 /* FirebaseDatabase in Frameworks */,
 				B92AC7A52CD15415001B71DA /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +117,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B8870B2CFAD55800B20E02 /* FirebaseDatabase in Frameworks */,
+				B9B8870D2CFAD55D00B20E02 /* FirebaseFirestore in Frameworks */,
+				B9B887092CFAD55500B20E02 /* FirebaseCore in Frameworks */,
+				B9B887072CFAD55200B20E02 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +155,7 @@
 				AAB342592CD95B7F00190DA3 /* AddMedicationView.swift */,
 				AAB3425B2CD974E200190DA3 /* ViewMedicationMethods.swift */,
 				B941ABE22CDCB977003121A9 /* NotificationManager.swift */,
+				B9B8870F2CFAE8AE00B20E02 /* UserProtocl.swift */,
 				B941ABE62CDCC0AE003121A9 /* NotificationDelegate.swift */,
 			);
 			path = Medication;
@@ -145,6 +168,7 @@
 				B92AC77F2CCED4B8001B71DA /* Medbox GenieTests */,
 				B92AC7892CCED4B8001B71DA /* Medbox GenieUITests */,
 				B92AC76B2CCED4B4001B71DA /* Products */,
+				B9B887012CFAD53E00B20E02 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,9 +219,18 @@
 			isa = PBXGroup;
 			children = (
 				B92AC78A2CCED4B8001B71DA /* Medbox_GenieUITests.swift */,
+				B9B886FB2CFAD2F000B20E02 /* NotificationManTEST.swift */,
+				B9B886FF2CFAD44600B20E02 /* MockNotification.swift */,
 				B92AC78C2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift */,
 			);
 			path = "Medbox GenieUITests";
+			sourceTree = "<group>";
+		};
+		B9B887012CFAD53E00B20E02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +253,8 @@
 				B92AC7A22CD15415001B71DA /* FirebaseAnalytics */,
 				B92AC7A42CD15415001B71DA /* FirebaseAuth */,
 				B92AC7A62CD15415001B71DA /* FirebaseFirestoreCombine-Community */,
+				B9B887022CFAD53E00B20E02 /* FirebaseDatabase */,
+				B9B887042CFAD54200B20E02 /* FirebaseCore */,
 			);
 			productName = "Medbox Genie";
 			productReference = B92AC76A2CCED4B4001B71DA /* Medbox Genie.app */;
@@ -257,6 +292,12 @@
 				B92AC7882CCED4B8001B71DA /* PBXTargetDependency */,
 			);
 			name = "Medbox GenieUITests";
+			packageProductDependencies = (
+				B9B887062CFAD55200B20E02 /* FirebaseAuth */,
+				B9B887082CFAD55500B20E02 /* FirebaseCore */,
+				B9B8870A2CFAD55800B20E02 /* FirebaseDatabase */,
+				B9B8870C2CFAD55D00B20E02 /* FirebaseFirestore */,
+			);
 			productName = "Medbox GenieUITests";
 			productReference = B92AC7862CCED4B8001B71DA /* Medbox GenieUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -351,6 +392,7 @@
 				B941ABE72CDCC0AE003121A9 /* NotificationDelegate.swift in Sources */,
 				B92AC76E2CCED4B4001B71DA /* Medbox_GenieApp.swift in Sources */,
 				B92AC79A2CCFD10C001B71DA /* LoginPageView.swift in Sources */,
+				B9B887102CFAE8AE00B20E02 /* UserProtocl.swift in Sources */,
 				B92AC79C2CCFD955001B71DA /* LandingPageView.swift in Sources */,
 				AAB3425A2CD95B7F00190DA3 /* AddMedicationView.swift in Sources */,
 			);
@@ -368,7 +410,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B886FE2CFAD2FB00B20E02 /* AddMedicationView.swift in Sources */,
+				B9B8870E2CFAD57E00B20E02 /* Medication.swift in Sources */,
+				B9B886FC2CFAD2F000B20E02 /* NotificationManTEST.swift in Sources */,
+				B9B887002CFAD44600B20E02 /* MockNotification.swift in Sources */,
 				B92AC78D2CCED4B8001B71DA /* Medbox_GenieUITestsLaunchTests.swift in Sources */,
+				B9B886FD2CFAD2F800B20E02 /* NotificationManager.swift in Sources */,
+				B9B887112CFAE8AE00B20E02 /* UserProtocl.swift in Sources */,
 				B92AC78B2CCED4B8001B71DA /* Medbox_GenieUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -709,6 +757,36 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreCombine-Community";
+		};
+		B9B887022CFAD53E00B20E02 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		B9B887042CFAD54200B20E02 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		B9B887062CFAD55200B20E02 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B9B887082CFAD55500B20E02 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		B9B8870A2CFAD55800B20E02 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		B9B8870C2CFAD55D00B20E02 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92AC7A12CD15414001B71DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
