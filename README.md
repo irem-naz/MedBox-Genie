@@ -29,14 +29,15 @@ MedBox Genie helps users stay on top of their prescribed medication by providing
 To run MedBox Genie locally, follow these steps:
 
 1. Clone the repository:
-   sh
+   sh'''
    git clone https://github.com/irem-naz/MedBox-Genie.git
+   '''
    
-2. Open the project in Xcode:
-   sh
+3. Open the project in Xcode:
+   
    cd medbox-genie
    open MedBoxGenie.xcodeproj
-3. Press the run button on Xcode and run the app on the simulator or a physical device.
+4. Press the run button on Xcode and run the app on the simulator or a physical device.
 
 ## Usage
 1. *Add New Medication*: Navigate to the **Add Medication* screen using the "+" button. Enter the medication name, frequency, start/end time, duration, dosage, quantity expiry date, and select the time(hour/minute) you would like to take the medicine, click "save" and the system will display your medication details on the main page.
