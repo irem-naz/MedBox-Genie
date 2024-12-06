@@ -7,6 +7,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
+- [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -41,14 +42,17 @@ To run MedBox Genie locally, follow these steps:
 4. Run the app on the simulator or a physical device.
 
 ## Usage
-1. *Add New Medication: Navigate to the **Add Medication* screen using the "+" button. Enter the medication name, frequency, start time, duration, and total pills.
-2. *Receive Reminders*: The app will notify you based on your prescribed medication schedule.
-3. *Manage Stock*: The app alerts you when your medication count reaches a low threshold.
-4. *Monitor Expiry*: Stay informed about upcoming medication expirations.
-5. *Track Side Effects*: Fill out surveys related to your symptoms and side effects for improved tracking.
+1. *Add New Medication: Navigate to the **Add Medication* screen using the "+" button. Enter the medication name, frequency, start/end time, duration, dosage, quantity expiry date, and select the time(hour/minute) you would like to take the medicine, click "save" and the system will display your medication details on the main page.
+2. *Receive Reminders*: The app will notify you based on your inputted medicine information, you will receive a banner with sound notifying you to take medicine, it also notifies you of the number of pills you have left in the inventory.
+3. *Manage Stock*: The app alerts you when your medication count reaches 3, it will be sent after a short delay reminding you to stock up on medicine.
+4. *Monitor Expiry*: Stay informed about upcoming medication expirations, based on the expiry date you provided the app will notify you when that day arrives.
+5. *Track Side Effects*: Fill out surveys related to your symptoms and side effects for improved tracking, it will be sent after you take the medicine, enabling you to track any possible side effects that you are feeling.
 
 ## Screenshots
 (Add screenshots of your application here, highlighting important screens like Medication List, Add Medication, Notifications, etc.)
+
+## Testing
+(Detailed description informing how to test the application)
 
 ## Contributing
 We welcome contributions! To contribute:
