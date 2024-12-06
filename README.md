@@ -48,7 +48,7 @@ To run MedBox Genie locally, follow these steps:
 
 
 ## Testing
-The testing is done through Xcode testing suite. The tests are inside the *testing-branch* for non-notification related parts of the code while all of the notification related tests are inside the *testing-notifications* branch. They bith can be accessed through the branches in this repo. In order to get the coverage report, ope the files inside the Xcode IDE with the Simulator and Testing Suite set-up. The tests can be run by going to the Test navigator, and pressing the run button. The coverage report will be listed at the Report navigator with the necessary information on each test's pass as well as the overall coverage report. 
+The testing is done through Xcode testing suite. The tests are inside the *testing-branch* for non-notification related parts of the code while all of the notification related tests are inside the *testing-notifications* branch. They both can be accessed through the branches in this repo. In order to get the coverage report, ope the files inside the Xcode IDE with the Simulator and Testing Suite set-up (press command 9 for simple access). The tests can be run by going to the Test navigator (command 6 for simplicity), and pressing the run button. The coverage report will be listed at the Report navigator with the necessary information on each test's pass as well as the overall coverage report. 
 
 ## Contributing
 We welcome contributions! To contribute:
