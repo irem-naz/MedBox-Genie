@@ -1,0 +1,11 @@
+[
+  {
+    "medicationName": "Ibuprofen",
+    "date": "2024-12-06T12:00:00Z",
+    "isCompleted": true,
+    "isPrompted": false,
+    "responses": {
+      "question1": "I'm feeling better now."
+    }
+  }
+]

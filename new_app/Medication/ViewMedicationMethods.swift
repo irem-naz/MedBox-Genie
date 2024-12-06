@@ -17,7 +17,7 @@ struct MedicationRow: View {
             VStack(alignment: .leading) {
                 Text(medication.medicineName)
                     .font(.headline)
-                Text("Earliest Dose: \(medication.startDate, style: .date)")
+                Text("Next Dose: \(calculateNextDoseTime(for: medication))")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -28,7 +28,51 @@ struct MedicationRow: View {
         .cornerRadius(8)
         .shadow(radius: 2)
     }
+
+    // Format the time as a user-friendly string
+    func formattedTime(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+
+    // Calculate the next dose time
+    func calculateNextDoseTime(for medication: Medication) -> String {
+        let calendar = Calendar.current
+        let now = Date()
+
+        // Base start time for the medication
+        let startOfDay = calendar.startOfDay(for: now)
+        let startTime = calendar.date(bySettingHour: medication.startHour, minute: medication.startMinute, second: 0, of: startOfDay)!
+
+        // Calculate time intervals for doses
+        let intervalBetweenDoses = 24 / medication.frequency
+        var nextDose: Date?
+
+        for doseIndex in 0..<medication.frequency {
+            let doseTime = calendar.date(byAdding: .hour, value: doseIndex * intervalBetweenDoses, to: startTime)!
+
+            if doseTime > now {
+                nextDose = doseTime
+                break
+            }
+        }
+
+        // If all doses for today have passed, show the first dose of the next day
+        if nextDose == nil {
+            nextDose = calendar.date(byAdding: .day, value: 1, to: startTime)
+        }
+
+        // Format and return the next dose time
+        if let nextDose = nextDose {
+            return formattedTime(from: nextDose)
+        } else {
+            return "N/A"
+        }
+    }
 }
+
+
 
 // this is the detail view when you click on the list view of the medication
 struct MedicationDetailView: View {
@@ -39,19 +83,26 @@ struct MedicationDetailView: View {
             Text(medication.medicineName)
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            
-            Text("Dosage: \(medication.medicineDosage)")
-            Text("Number of Tablets: \(medication.numberOfTablets)")
-            Text("Prescribed Dosage: \(medication.prescribedDosage)")
-            Text("Intake Frequency: \(medication.intakeFrequency)")
-            
+
+            Text("Frequency: \(medication.frequency) dose(s) per day")
+            Text("Start Time: \(formattedTime(hour: medication.startHour, minute: medication.startMinute))")
+            Text("Duration: \(medication.duration) day(s)")
             Text("Start Date: \(medication.startDate, style: .date)")
-            Text("End Date: \(medication.endDate, style: .date)")
             Text("Expiry Date: \(medication.expiryDate, style: .date)")
-            
+
             Spacer()
         }
         .padding()
         .navigationTitle("Medication Details")
+    }
+
+    func formattedTime(hour: Int, minute: Int) -> String {
+        let dateComponents = DateComponents(hour: hour, minute: minute)
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        if let date = Calendar.current.date(from: dateComponents) {
+            return formatter.string(from: date)
+        }
+        return "\(hour):\(String(format: "%02d", minute))"
     }
 }

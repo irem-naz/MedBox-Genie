@@ -125,8 +125,8 @@ struct SignUpPageView: View {
                         .background(viewModel.email.isEmpty || viewModel.username.isEmpty || viewModel.password.isEmpty ? Color.gray : Color.green)
                         .cornerRadius(10)
                 }
-                .disabled(viewModel.email.isEmpty || viewModel.username.isEmpty || viewModel.password.isEmpty)
-                .padding(.top, 20)
+//                .disabled(viewModel.email.isEmpty || viewModel.username.isEmpty || viewModel.password.isEmpty)
+//                .padding(.top, 20)
             }
             .padding()
         }

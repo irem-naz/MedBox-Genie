@@ -1,24 +1,46 @@
 [
-  {
-    "id": "1",
-    "medicineName": "Aspirin",
-    "medicineDosage": "200mg",
-    "numberOfTablets": 30,
-    "prescribedDosage": "1 tablet daily",
-    "intakeFrequency": 1,
-    "startDate": "2024-11-14T00:00:00Z",
-    "endDate": "2024-12-14T00:00:00Z",
-    "expiryDate": "2025-11-14T00:00:00Z"
-  },
-  {
-    "id": "2",
-    "medicineName": "Paracetamol",
-    "medicineDosage": "500mg",
-    "numberOfTablets": 20,
-    "prescribedDosage": "1 tablet every 8 hours",
-    "intakeFrequency": 3,
-    "startDate": "2024-11-10T00:00:00Z",
-    "endDate": "2024-11-20T00:00:00Z",
-    "expiryDate": "2025-11-10T00:00:00Z"
-  }
+    {
+        "medicineName": "Aspirin",
+        "frequency": 2,
+        "startHour": 8,
+        "startMinute": 0,
+        "duration": 10,
+        "startDate": "2024-12-06T08:00:00Z",
+        "expiryDate": "2025-12-06T00:00:00Z",
+        "totalPills": 30,
+        "surveys": [
+            {
+                "date": "2024-12-07T00:00:00Z",
+                "isCompleted": false,
+                "isPrompted": true,
+                "responses": {}
+            },
+            {
+                "date": "2024-12-09T00:00:00Z",
+                "isCompleted": false,
+                "isPrompted": true,
+                "responses": {}
+            }
+        ]
+    },
+    {
+        "medicineName": "Ibuprofen",
+        "frequency": 4,
+        "startHour": 9,
+        "startMinute": 0,
+        "duration": 7,
+        "startDate": "2024-12-06T09:00:00Z",
+        "expiryDate": "2025-12-06T00:00:00Z",
+        "totalPills": 40,
+        "surveys": [
+            {
+                "date": "2024-12-07T00:00:00Z",
+                "isCompleted": true,
+                "isPrompted": false,
+                "responses": {
+                    "question1": "Slight headache"
+                }
+            }
+        ]
+    }
 ]

@@ -46,6 +46,9 @@
 				MainPages/ProfileView.swift,
 				Medication/AddMedicationView.swift,
 				Medication/Medication.swift,
+				Medication/survey.json,
+				Medication/SurveyDetailView.swift,
+				Medication/UserProtocl.swift,
 				Medication/ViewMedicationMethods.swift,
 			);
 			target = AAA38B312CE66DE00022F663 /* new_appTests */;

@@ -24,7 +24,7 @@ struct MainPageView: View {
                     showAddMedication = true
                 }
             )
-            .onAppear(perform: loadMedications)
+//            .onAppear(perform: loadMedications)
         }
         .sheet(isPresented: $showAddMedication) {
             AddMedicationView(onSave: loadMedications)
@@ -44,8 +44,3 @@ struct MainPageView: View {
     }
 }
 
-struct MainPage_Previews: PreviewProvider {
-    static var previews: some View {
-        MainPageView(isLoggedIn: .constant(true))
-    }
-}

@@ -1,76 +1,92 @@
 import SwiftUI
 
 struct AddMedicationView: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss)  var dismiss
     @State var medicineName: String = ""
     @State var medicineDosage: String = ""
-    @State var numberOfTablets: Int = 0
-    @State var prescribedDosage: String = ""
-    @State var intakeFrequency: Int = 0
+    @State var frequency: Int = 1
+    @State var duration: Int = 10
     @State var startDate: Date = Date()
-    @State var endDate: Date = Date()
     @State var expiryDate: Date = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
-    @State var showErrorMessage = false
-    @State var errorMessage = ""
+    @State var totalPills: Int = 0
+    @State var showErrorMessage: Bool = false
+    @State var errorMessage: String = ""
 
     var onSave: (() -> Void)?
 
     var body: some View {
-        Form {
-            Section(header: Text("Medication Details")) {
-                TextField("Medicine Name", text: $medicineName)
-                TextField("Medicine Dosage", text: $medicineDosage)
-                Stepper("Number of Tablets: \(numberOfTablets)", value: $numberOfTablets, in: 0...100)
-                TextField("Prescribed Dosage", text: $prescribedDosage)
-                Stepper("Intake Frequency: \(intakeFrequency)", value: $intakeFrequency, in: 0...100)
+        NavigationView {
+            Form {
+                Section(header: Text("Medication Details")) {
+                    TextField("Medicine Name", text: $medicineName)
+                    TextField("Medicine Dosage", text: $medicineDosage)
+                    
+                    Stepper("Frequency: \(frequency) dose(s) per day", value: $frequency, in: 1...6)
+                    
+                    Stepper("Duration: \(duration) day(s)", value: $duration, in: 1...30)
+                    
+                    Stepper("Total Pills: \(totalPills)", value: $totalPills, in: 1...500)
+                }
+
+                Section(header: Text("Dates")) {
+                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+                    DatePicker("Expiry Date", selection: $expiryDate, in: startDate..., displayedComponents: .date)
+                }
+
+                Button("Add Medication") {
+                    saveMedicationToFile()
+                }
+                .disabled(medicineName.isEmpty || totalPills == 0 || medicineDosage.isEmpty)
             }
-            Section(header: Text("Dates")) {
-                DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
-                DatePicker("End Date", selection: $endDate, displayedComponents: .date)
-                DatePicker("Expiry Date", selection: $expiryDate, displayedComponents: .date)
-            }
-            Button("Add Medication") {
-                saveMedicationToLocalFile()
-            }
-            .disabled(medicineName.isEmpty || medicineDosage.isEmpty || numberOfTablets == 0 || prescribedDosage.isEmpty || intakeFrequency == 0)
+            .navigationBarTitle("Add Medication", displayMode: .inline)
+//            .navigationBarItems(trailing: Button("Cancel") {
+//                dismiss()
+            //})
         }
-        .alert(isPresented: $showErrorMessage) {
-            Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
-        }
+        
     }
 
-    func saveMedicationToLocalFile() {
-        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("medications.json")
+    func saveMedicationToFile() {
+        let medicationFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("medications.json")
+        let surveyFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("survey.json")
 
         var medications: [[String: Any]] = []
 
-        if FileManager.default.fileExists(atPath: fileURL.path) {
+        // Load existing medications
+        if FileManager.default.fileExists(atPath: medicationFileURL.path) {
             do {
-                let data = try Data(contentsOf: fileURL)
+                let data = try Data(contentsOf: medicationFileURL)
                 medications = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] ?? []
             } catch {
+                errorMessage = "Failed to read existing file."
+                showErrorMessage = true
                 return
             }
         }
 
-        // Convert dates to string format
+        // Load surveys
+        let surveys = fetchSurveys(for: medicineName, from: surveyFileURL)
+
+        // Convert dates to string
         let dateFormatter = ISO8601DateFormatter()
-        let newMedication: [String: Any] = [
+        let medication: [String: Any] = [
             "medicineName": medicineName,
             "medicineDosage": medicineDosage,
-            "numberOfTablets": numberOfTablets,
-            "prescribedDosage": prescribedDosage,
-            "intakeFrequency": intakeFrequency,
+            "frequency": frequency,
+            "duration": duration,
             "startDate": dateFormatter.string(from: startDate),
-            "endDate": dateFormatter.string(from: endDate),
-            "expiryDate": dateFormatter.string(from: expiryDate)
+            "expiryDate": dateFormatter.string(from: expiryDate),
+            "totalPills": totalPills,
+            "surveys": surveys
         ]
 
-        medications.append(newMedication)
+        medications.append(medication)
 
+        // Save to file
         do {
             let data = try JSONSerialization.data(withJSONObject: medications, options: .prettyPrinted)
-            try data.write(to: fileURL, options: .atomic)
+            try data.write(to: medicationFileURL, options: .atomic)
+            onSave?()
             dismiss()
         } catch {
             errorMessage = "Failed to save file."
@@ -78,4 +94,21 @@ struct AddMedicationView: View {
         }
     }
 
+    func fetchSurveys(for medicineName: String, from surveyFileURL: URL) -> [[String: Any]] {
+        var surveys: [[String: Any]] = []
+
+        if FileManager.default.fileExists(atPath: surveyFileURL.path) {
+            do {
+                let data = try Data(contentsOf: surveyFileURL)
+                let allSurveys = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] ?? []
+                surveys = allSurveys.filter { $0["medicationName"] as? String == medicineName }
+            } catch {
+                print("[ERROR] Failed to fetch surveys for \(medicineName): \(error.localizedDescription)")
+            }
+        }
+
+        return surveys
+    }
+
+    
 }
