@@ -30,7 +30,7 @@ To run MedBox Genie locally, follow these steps:
 
 1. Clone the repository:
    sh
-   git clone https://github.com/irem-naz/medbox-genie.git
+   git clone [https://github.com/irem-naz/medbox-genie.git](https://github.com/irem-naz/MedBox-Genie.git)
    
 2. Open the project in Xcode:
    sh
